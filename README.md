@@ -1,7 +1,5 @@
 # Astro Netlify Sanity Starter
 
-POC for Netlify.com HP with Astro.js.
-
 ## Quickstart
 
 Create local project from this repo and run:
