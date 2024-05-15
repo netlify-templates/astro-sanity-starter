@@ -1,0 +1,65 @@
+---
+import HeaderLogo from './HeaderLogo.astro';
+import Button from './Button.astro';
+
+const header = {
+    id: 'site-nav',
+    title: 'Site navigation',
+    menu: [
+        {
+            url: '',
+            label: 'Solutions',
+            id: 'mainNav-solutions'
+        },
+        {
+            url: 'https://docs.Company.com',
+            label: 'Docs',
+            id: 'mainNav-docs'
+        },
+        {
+            url: '/pricing/',
+            label: 'Pricing',
+            id: 'mainNav-pricing'
+        },
+        {
+            url: '/contact/',
+            label: 'Contact',
+            id: 'mainNav-contact'
+        },
+        {
+            url: 'https://app.Company.com/login',
+            label: 'Log in',
+            id: 'mainNav-login'
+        },
+        {
+            url: 'https://app.Company.com/signup',
+            label: 'Sign up',
+            id: 'mainNav-signup'
+        }
+    ]
+};
+
+const menu = header.menu.slice(0, -1);
+const cta = header.menu[header.menu.length - 1];
+---
+
+<header class="page-header">
+    <nav id="site-nav" class="navbar" aria-labelledby="site-nav-label">
+        <h2 id="site-nav-label" class="hidden">Site navigation</h2>
+        <HeaderLogo />
+        <ul class="menu menu-horizontal px-1" "list">
+            {
+                menu.map((item) => {
+                    return (
+                        <li>
+                            <a href={item.url} id={item.id}>
+                                {item.label}
+                            </a>
+                        </li>
+                    );
+                })
+            }
+        </ul>
+        <Button label={cta.label} id={cta.id} href={cta.url} class="btn" data-variant="primary" />
+    </nav>
+</header>

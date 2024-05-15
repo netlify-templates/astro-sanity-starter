@@ -1,0 +1,35 @@
+---
+import { marked } from 'marked';
+
+marked.Renderer.prototype.paragraph = (text) => {
+    return text + '\n';
+};
+
+const { author, quote, 'data-sb-field-path': fieldPath } = Astro.props;
+---
+
+<div data-theme="light" class="testimonial | card l-stack l-center" data-sb-field-path={fieldPath}>
+    <figure class="l-stack">
+        {quote && <blockquote data-sb-field-path=".quote" set:html={marked.parse(quote)} />}
+        {
+            author && (
+                <figcaption class="caption | l-cluster" data-sb-field-path=".author">
+                    <div>
+                        {author?.avatar && <img src={author?.avatar} alt="" class="w-24 mask mask-squircle" data-sb-field-path=".avatar" />}
+                        <dl style="--stack-space: var(--space-xs)" class="l-stack">
+                            {author?.name && (
+                                <dt class="author-name | font-bold tracking-tight" data-sb-field-path=".name">
+                                    {author?.name}
+                                </dt>
+                            )}
+                            <dd class="author-title | text--1 leading-snug">
+                                {author?.title && <span data-sb-field-path=".title">{author?.title},</span>}
+                                {author?.company?.name && <span data-sb-field-path=".company.name">{author?.company?.name}</span>}
+                            </dd>
+                        </dl>
+                    </div>
+                </figcaption>
+            )
+        }
+    </figure>
+</div>

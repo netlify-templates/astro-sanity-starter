@@ -1,0 +1,15 @@
+---
+import Testimonial from './Testimonial.astro';
+
+const { testimonials = [] } = Astro.props;
+---
+
+{
+    testimonials.length > 0 && (
+        <article data-sb-field-path="testimonials">
+            {testimonials?.map((testimonial, idx) => (
+                <Testimonial {...testimonial} data-sb-field-path={`.testimonials.${idx}`} />
+            ))}
+        </article>
+    )
+}

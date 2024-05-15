@@ -1,0 +1,39 @@
+---
+const { heading = [], supporting, cta } = Astro.props;
+---
+
+<article class="hero py-16 bg-base-200 mb-6" data-sb-field-path="hero">
+    <div class="hero-content text-center">
+        <div class="max-w-md">
+            {
+                heading.length > 0 && (
+                    <h1 class="text-5xl font-bold" data-sb-field-path=".heading">
+                        {heading.map((fragment, idx) => (
+                            <span data-sb-field-path={`.${idx}`}>{fragment}</span>
+                        ))}
+                    </h1>
+                )
+            }
+            {
+                supporting && (
+                    <p class="py-6" data-sb-field-path=".supporting">
+                        {supporting}
+                    </p>
+                )
+            }
+            {
+                cta && cta.url && cta.label && (
+                    <a
+                        id={cta.id}
+                        href={cta.url}
+                        aria-label={cta.ariaLabel}
+                        class="btn btn-primary"
+                        data-sb-field-path=".cta .cta.url#@href .cta.ariaLabel#@aria-label .cta.id#@id"
+                    >
+                        <span data-sb-field-path=".label">{cta.label}</span>
+                    </a>
+                )
+            }
+        </div>
+    </div>
+</article>

@@ -1,0 +1,26 @@
+---
+const { id, label, url, variant = 'primary', dataset = [], 'data-sb-field-path': fieldPath, ...rest } = Astro.props;
+const datasetAttr = {};
+if (dataset?.length > 0) {
+    dataset.forEach((attr) => {
+        if (attr.name && attr.value) {
+            datasetAttr[attr.name] = attr.value;
+        }
+    });
+}
+const annotations = fieldPath
+    ? { 'data-sb-field-path': [fieldPath, `${fieldPath}.url#@href`, `${fieldPath}.ariaLabel#@aria-label`, `${fieldPath}.id#@id`].join(' ').trim() }
+    : {};
+---
+
+{
+    url ? (
+        <a class="btn" href={url} id={id} data-variant={variant} {...datasetAttr} {...annotations} {...rest}>
+            <span {...(fieldPath && { 'data-sb-field-path': '.label' })}>{label}</span>
+        </a>
+    ) : (
+        <button class="btn" id={id} data-variant={variant} {...datasetAttr} {...annotations} {...rest}>
+            <span {...(fieldPath && { 'data-sb-field-path': '.label' })}>{label}</span>
+        </button>
+    )
+}
