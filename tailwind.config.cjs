@@ -13,23 +13,49 @@ export default {
                 neutral: colors.neutral
             },
             fontFamily: {
-                sans: ['Inter', ...defaultTheme.fontFamily.sans]
+                sans: ['Mulish', ...defaultTheme.fontFamily.sans]
             }
         }
     },
+    plugins: [require('daisyui')],
     daisyui: {
         themes: [
             {
-                lofi: {
-                    ...require('daisyui/src/theming/themes')['lofi'],
-                    primary: '#F67280',
-                    'primary-content': '#1f1f1f',
-                    secondary: '#C06C84',
-                    info: '#F67280',
-                    'info-content': '#1f1f1f'
+                dark: {
+                    ...require('daisyui/src/theming/themes')['dark'],
+                    primary: '#ffae9c',
+                    'primary-content': '#171227',
+                    secondary: '#fff2d7',
+                    'secondary-content': '#171227',
+                    accent: '#e3f1ff',
+                    'accent-content': '#171227',
+                    neutral: '#171227',
+                    'neutral-content': '#ffffff',
+                    'base-100': '#171227',
+                    'base-200': '#2e293c',
+                    'base-content': '#ffffff',
+                    '--rounded-btn': '.375rem',
+                    '--rounded-badge': '9999px'
+                }
+            },
+            {
+                light: {
+                    ...require('daisyui/src/theming/themes')['light'],
+                    primary: '#ffae9c',
+                    'primary-content': '#171227',
+                    secondary: '#fff2d7',
+                    'secondary-content': '#171227',
+                    accent: '#e3f1ff',
+                    'accent-content': '#171227',
+                    neutral: '#171227',
+                    'neutral-content': '#ffffff',
+                    'base-100': '#ffffff',
+                    'base-200': '#d7d8e4',
+                    'base-content': '#171227',
+                    '--rounded-btn': '.375rem',
+                    '--rounded-badge': '9999px'
                 }
             }
         ]
-    },
-    plugins: [require('daisyui')]
+    }
 };

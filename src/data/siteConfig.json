@@ -1,0 +1,43 @@
+{
+    "type": "SiteConfig",
+    "header": {
+        "type": "Header",
+        "title": "Company",
+        "navLinks": [
+            {
+                "type": "Button",
+                "label": "Integrations",
+                "url": "/",
+                "variant": "text",
+                "theme": "neutral"
+            },
+            {
+                "type": "Button",
+                "label": "Pricing",
+                "url": "/",
+                "variant": "text",
+                "theme": "neutral"
+            },
+            {
+                "type": "Button",
+                "label": "Log In",
+                "url": "/",
+                "variant": "text",
+                "theme": "neutral"
+            },
+            {
+                "type": "Button",
+                "label": "Sign Up",
+                "url": "/",
+                "variant": "solid",
+                "theme": "primary"
+            }
+        ]
+    },
+    "footer": {
+        "type": "Footer",
+        "copyrightText": "Company © 2024"
+    },
+    "favicon": "/favicon.svg",
+    "titleSuffix": "Company"
+}

@@ -1,0 +1,79 @@
+---
+const { logos, motion, class: className, 'data-sb-field-path': fieldPath } = Astro.props;
+---
+
+<div
+    class:list={[
+        'relative before:absolute before:h-full before:w-1/6 before:left-0 before:top-0 before:content-[""] before:bg-gradient-to-l before:from-transparent before:to-base-100 before:z-10 after:absolute after:h-full after:w-1/6 after:right-0 after:top-0 after:content-[""] after:bg-gradient-to-r after:from-transparent after:to-base-100 after:z-10',
+        className
+    ]}
+>
+    <div
+        class="relative overflow-hidden whitespace-nowrap"
+        style={{
+            '--logo-slide-speed': `${logos.length * 8}s`
+        }}
+    >
+        <div class:list={['logo-strip', 'flex', ' items-center', 'w-max', motion === 'moveToLeft' ? 'logo-strip-slide-left' : 'logo-strip-slide-right']}>
+            <div class="flex justify-around logo-strip-items" data-sb-field-path={fieldPath}>
+                {
+                    logos.map((logo, idx) => {
+                        return logo.src ? (
+                            <div class="inline-flex items-center justify-center p-4">
+                                <img src={logo.src} alt={logo.alt || ''} data-sb-field-path={`.${idx}`} />
+                            </div>
+                        ) : null;
+                    })
+                }
+            </div>
+            <div class="flex justify-around logo-strip-items" data-sb-field-path={fieldPath}>
+                {
+                    logos.map((logo, idx) => {
+                        return logo.src ? (
+                            <div class="inline-flex items-center justify-center p-4">
+                                <img src={logo.src} alt={logo.alt || ''} data-sb-field-path={`.${idx}`} />
+                            </div>
+                        ) : null;
+                    })
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .logo-strip {
+        min-width: 160rem;
+    }
+    .logo-strip-slide-left {
+        animation-name: slideLeft;
+        animation-duration: var(--logo-slide-speed, 80s);
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+    .logo-strip-slide-right {
+        animation-name: slideRight;
+        animation-duration: var(--logo-slide-speed, 80s);
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+    .logo-strip-items {
+        min-width: 80rem;
+    }
+    @keyframes slideLeft {
+        from {
+            transform: translate3d(0, 0, 0);
+        }
+        to {
+            transform: translate3d(-50%, 0, 0);
+        }
+    }
+    @keyframes slideRight {
+        from {
+            transform: translate3d(-50%, 0, 0);
+        }
+        to {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>

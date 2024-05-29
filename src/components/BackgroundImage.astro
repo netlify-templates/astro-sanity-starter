@@ -1,0 +1,16 @@
+---
+const { image, opacity, 'data-sb-field-path': fieldPath } = Astro.props;
+---
+
+{
+    image && image.src && (
+        <div
+            class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+                backgroundImage: `url('${image.src}')`,
+                opacity: (opacity ?? 100) * 0.01
+            }}
+            data-sb-field-path={fieldPath}
+        />
+    )
+}

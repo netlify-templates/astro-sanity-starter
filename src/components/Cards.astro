@@ -1,25 +1,34 @@
 ---
-import Card from './Card.astro';
+import { marked } from 'marked';
+import Card from '@components/Card.astro';
+import Section from '@components/Section.astro';
 
-const { heading, subheading, columns = [] } = Astro.props;
+const { heading, body, items, columns, ...rest } = Astro.props;
 ---
 
-<article class="my-6" data-sb-field-path="cards">
+<Section {...rest} class="text-center">
     {
-        (heading || subheading) && (
-            <h2 class="text-4xl font-bold text-center mb-6">
-                {heading && <span data-sb-field-path=".heading">{heading}</span>}
-                {subheading && <span data-sb-field-path=".subheading">{subheading}</span>}
+        heading && (
+            <h2 class="text-2xl font-bold sm:text-4xl text-balance" data-sb-field-path=".heading">
+                {heading}
             </h2>
         )
     }
+    {body && <div class:list={['mx-auto', heading && 'mt-4', 'max-w-prose markdown']} data-sb-field-path=".body" set:html={marked.parse(body)} />}
     {
-        columns?.length > 0 && (
-            <section class="flex flex-col gap-8 md:flex-row" ".columns">
-                {columns?.map((column, idx) => (
-                    <Card {...column} data-sb-field-path={`.${idx}`} />
+        items && items?.length > 0 && (
+            <div
+                class:list={[
+                    (heading || body) && 'mt-8',
+                    'grid gap-8 justify-items-center',
+                    columns === 'one' ? undefined : columns === 'two' ? 'md:grid-cols-2' : 'md:grid-cols-3'
+                ]}
+                data-sb-field-path=".items"
+            >
+                {items?.map((item, idx) => (
+                    <Card {...item} data-sb-field-path={`.${idx}`} class="flex-1" />
                 ))}
-            </section>
+            </div>
         )
     }
-</article>
+</Section>

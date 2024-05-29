@@ -1,39 +1,27 @@
 ---
-const { heading = [], supporting, cta } = Astro.props;
+import { marked } from 'marked';
+import Button from '@components/Button.astro';
+import Section from '@components/Section.astro';
+
+const { heading, body, cta, ...rest } = Astro.props;
 ---
 
-<article class="hero py-16 bg-base-200 mb-6" data-sb-field-path="hero">
-    <div class="hero-content text-center">
-        <div class="max-w-md">
-            {
-                heading.length > 0 && (
-                    <h1 class="text-5xl font-bold" data-sb-field-path=".heading">
-                        {heading.map((fragment, idx) => (
-                            <span data-sb-field-path={`.${idx}`}>{fragment}</span>
-                        ))}
-                    </h1>
-                )
-            }
-            {
-                supporting && (
-                    <p class="py-6" data-sb-field-path=".supporting">
-                        {supporting}
-                    </p>
-                )
-            }
-            {
-                cta && cta.url && cta.label && (
-                    <a
-                        id={cta.id}
-                        href={cta.url}
-                        aria-label={cta.ariaLabel}
-                        class="btn btn-primary"
-                        data-sb-field-path=".cta .cta.url#@href .cta.ariaLabel#@aria-label .cta.id#@id"
-                    >
-                        <span data-sb-field-path=".label">{cta.label}</span>
-                    </a>
-                )
-            }
-        </div>
-    </div>
-</article>
+<Section {...rest} class="text-center">
+    {
+        heading && (
+            <h1 class="text-4xl font-bold sm:text-6xl text-balance" data-sb-field-path=".heading">
+                {heading}
+            </h1>
+        )
+    }
+    {body && <div class:list={['mx-auto', heading && 'mt-6', 'max-w-prose markdown']} data-sb-field-path=".body" set:html={marked.parse(body)} />}
+    {
+        cta && cta.length > 0 && (
+            <div class:list={[(heading || body) && 'mt-8', 'flex flex-wrap items-center justify-center gap-4']} data-sb-field-path=".cta">
+                {cta.map((item, index) => (
+                    <Button {...item} class:list={[cta.variant === 'text' && 'font-bold underline hover:no-underline']} data-sb-field-path={`.${index}`} />
+                ))}
+            </div>
+        )
+    }
+</Section>

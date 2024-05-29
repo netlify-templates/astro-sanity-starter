@@ -1,0 +1,44 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import Layout from '@layouts/Layout.astro';
+import Cards from '@components/Cards.astro';
+import Cta from '@components/Cta.astro';
+import Hero from '@components/Hero.astro';
+import Logos from '@components/Logos.astro';
+import Testimonials from '@components/Testimonials.astro';
+
+export async function getStaticPaths() {
+    const pages = await getCollection('pages');
+    return pages.map((page) => {
+        return {
+            params: { slug: page.slug !== 'index' ? page.slug : undefined },
+            props: { page }
+        };
+    });
+}
+
+type Props = { page: CollectionEntry<'pages'> };
+
+const { page } = Astro.props;
+const { title, sections, theme, metaTitle, addTitleSuffix, metaDescription, socialImage } = page.data;
+
+const componentMap = {
+    Cards: Cards,
+    Cta: Cta,
+    Hero: Hero,
+    Logos: Logos,
+    Testimonials: Testimonials
+};
+---
+
+<Layout title={metaTitle ?? title} addTitleSuffix={addTitleSuffix} description={metaDescription} image={socialImage} theme={theme}>
+    <div data-sb-object-id={`src/content/pages/${page.id}`}>
+        {
+            sections?.length &&
+                sections.map((section, idx) => {
+                    const Component = componentMap[section.type];
+                    return <Component {...section} data-sb-field-path={`sections.${idx}`} />;
+                })
+        }
+    </div>
+</Layout>

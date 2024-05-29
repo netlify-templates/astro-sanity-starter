@@ -1,0 +1,14 @@
+---
+const { text, theme, class: className, 'data-sb-field-path': fieldPath } = Astro.props;
+
+const themeClassMap = {
+    primary: 'badge-primary',
+    secondary: 'badge-secondary',
+    accent: 'badge-accent',
+    neutral: 'badge-neutral'
+};
+---
+
+<div class:list={['badge h-auto px-3 py-1 text-xs uppercase', themeClassMap[theme || 'primary'], className]} data-sb-field-path={fieldPath}>
+    <span data-sb-field-path=".text">{text}</span>
+</div>

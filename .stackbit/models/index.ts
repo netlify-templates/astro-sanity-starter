@@ -1,39 +1,35 @@
-import { Author } from './Author';
+import { Person } from './Person';
+import { BackgroundImage } from './BackgroundImage';
+import { Badge } from './Badge';
 import { Button } from './Button';
 import { Card } from './Card';
 import { Cards } from './Cards';
-import { Company } from './Company';
 import { Cta } from './Cta';
-import { DataAttribute } from './DataAttribute';
-import { Facet } from './Facet';
+import { Footer } from './Footer';
+import { Header } from './Header';
 import { Hero } from './Hero';
-import { Home } from './Home';
-import { ImageBlock } from './ImageBlock';
+import { Image } from './Image';
 import { Logos } from './Logos';
-import { Metrics } from './Metrics';
-import { MetricsItem } from './MetricsItem';
-import { Summary } from './Summary';
+import { Page } from './Page';
+import { SiteConfig } from './SiteConfig';
 import { Testimonial } from './Testimonial';
 import { Testimonials } from './Testimonials';
-import { VideoBlock } from './VideoBlock';
 
 export const allModels = {
-    Author,
+    Person,
+    BackgroundImage,
+    Badge,
     Button,
     Card,
     Cards,
-    Company,
     Cta,
-    DataAttribute,
-    Facet,
+    Footer,
+    Header,
     Hero,
-    Home,
-    ImageBlock,
+    Image,
     Logos,
-    Metrics,
-    MetricsItem,
-    Summary,
+    Page,
+    SiteConfig,
     Testimonial,
-    Testimonials,
-    VideoBlock
+    Testimonials
 };
