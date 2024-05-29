@@ -1,65 +1,141 @@
 ---
-import HeaderLogo from './HeaderLogo.astro';
-import Button from './Button.astro';
+import { Icon } from 'astro-icon/components';
+import HeaderNavLink from '@components/HeaderNavLink.astro';
+import Button from '@components/Button.astro';
 
-const header = {
-    id: 'site-nav',
-    title: 'Site navigation',
-    menu: [
-        {
-            url: '',
-            label: 'Solutions',
-            id: 'mainNav-solutions'
-        },
-        {
-            url: 'https://docs.Company.com',
-            label: 'Docs',
-            id: 'mainNav-docs'
-        },
-        {
-            url: '/pricing/',
-            label: 'Pricing',
-            id: 'mainNav-pricing'
-        },
-        {
-            url: '/contact/',
-            label: 'Contact',
-            id: 'mainNav-contact'
-        },
-        {
-            url: 'https://app.Company.com/login',
-            label: 'Log in',
-            id: 'mainNav-login'
-        },
-        {
-            url: 'https://app.Company.com/signup',
-            label: 'Sign up',
-            id: 'mainNav-signup'
-        }
-    ]
-};
+interface Props {
+    type: string;
+    title?: string;
+    navLinks?: {
+        type: string;
+        label: string;
+        ariaLabel?: string;
+        url: string;
+        variant?: string;
+        theme?: string;
+    }[];
+}
 
-const menu = header.menu.slice(0, -1);
-const cta = header.menu[header.menu.length - 1];
+const { title, navLinks } = Astro.props;
 ---
 
-<header class="page-header">
-    <nav id="site-nav" class="navbar" aria-labelledby="site-nav-label">
-        <h2 id="site-nav-label" class="hidden">Site navigation</h2>
-        <HeaderLogo />
-        <ul class="menu menu-horizontal px-1" "list">
-            {
-                menu.map((item) => {
-                    return (
-                        <li>
-                            <a href={item.url} id={item.id}>
-                                {item.label}
-                            </a>
-                        </li>
-                    );
-                })
-            }
-        </ul>
-        <Button label={cta.label} id={cta.id} href={cta.url} class="btn" data-variant="primary" />
-    </nav>
-</header>
+<nav class="p-4 sm:p-5" data-sb-field-path="src/data/siteConfig.json:header">
+    <div class="flex items-center justify-between w-full gap-6 mx-auto max-w-7xl">
+        {
+            title && (
+                <a class="text-xl font-bold sm:text-2xl" href="/" data-sb-field-path=".title">
+                    {title}
+                </a>
+            )
+        }
+        {
+            navLinks && navLinks.length > 0 && (
+                <>
+                    <ul class="hidden lg:flex lg:flex-wrap lg:items-center lg:gap-6" data-sb-field-path=".navLinks">
+                        {navLinks.map((item, index) => (
+                            <li>
+                                <Button
+                                    {...item}
+                                    class:list={[item.variant !== 'text' ? 'px-4 py-3 h-auto min-h-0' : 'no-underline hover:underline']}
+                                    data-sb-field-path={`.${index}`}
+                                />
+                            </li>
+                        ))}
+                    </ul>
+                    <div class="relative lg:hidden">
+                        <button
+                            class="inline-flex justify-center items-center w-10 h-10 relative z-[2] nav-toggle"
+                            aria-label="Open Menu"
+                            aria-expanded="false"
+                            aria-controls="nav-panel"
+                        >
+                            <span class="nav-toggle-icon" />
+                        </button>
+                        <div id="nav-panel" class="nav-panel absolute rounded-box -top-2 -right-2 z-[1] shadow-xl bg-base-100 border border-base-200/70">
+                            <ul class="flex flex-col px-4 pb-6 pt-14" data-sb-field-path=".navLinks">
+                                {navLinks.map((item, index) => (
+                                    <li>
+                                        <Button
+                                            {...item}
+                                            class:list={[
+                                                item.variant !== 'text' ? 'w-full px-4 py-3.5 h-auto min-h-0' : 'block py-2 no-underline hover:underline'
+                                            ]}
+                                            data-sb-field-path={`.${index}`}
+                                        />
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </>
+            )
+        }
+    </div>
+</nav>
+
+<style>
+    .nav-panel {
+        @apply max-w-72 opacity-0 scale-90 origin-top-right invisible;
+        width: calc(100vw - 1rem);
+        transition:
+            transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+            opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+            visibility 0s 0.25s;
+    }
+    .nav-panel.is-visible {
+        @apply scale-100 opacity-100 visible;
+        transition: 0.25s;
+    }
+    .nav-panel li + li:has(.btn),
+    .nav-panel li:has(.btn) + li {
+        @apply mt-4;
+    }
+    .nav-toggle-icon {
+        @apply block relative bg-current rounded transition;
+        width: 1.5rem;
+        height: 0.125rem;
+    }
+    .nav-toggle-icon:before,
+    .nav-toggle-icon:after {
+        @apply block absolute bg-current rounded transition-all;
+        content: '';
+        width: 1.5rem;
+        height: 0.125rem;
+    }
+    .nav-toggle-icon:before {
+        top: -0.5rem;
+    }
+    .nav-toggle-icon:after {
+        top: 0.5rem;
+    }
+    .nav-toggle-icon.is-active {
+        @apply bg-transparent;
+    }
+    .nav-toggle-icon.is-active:before {
+        top: 0;
+        margin-top: -0.5625rem;
+        transform: translateY(0.5rem) rotate(-45deg);
+    }
+    .nav-toggle-icon.is-active:after {
+        top: 0;
+        margin-top: -0.5625rem;
+        transform: translateY(0.5rem) rotate(45deg);
+    }
+</style>
+
+<script>
+    function navToggle() {
+        const nav = document.querySelector('.nav-panel');
+        const navToggleBtn = document.querySelector('.nav-toggle');
+        const navToggleIcon = document.querySelector('.nav-toggle-icon');
+        navToggleBtn?.addEventListener('click', () => {
+            const isMenuExpanded = navToggleBtn.getAttribute('aria-expanded') === 'true';
+            navToggleBtn.setAttribute('aria-expanded', isMenuExpanded ? 'false' : 'true');
+            navToggleBtn.setAttribute('aria-label', isMenuExpanded ? 'Open Menu' : 'Close Menu');
+            navToggleIcon?.classList.toggle('is-active');
+            nav?.classList.toggle('is-visible');
+        });
+    }
+    navToggle();
+    document.addEventListener('astro:after-swap', navToggle);
+</script>

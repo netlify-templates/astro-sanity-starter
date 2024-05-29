@@ -1,35 +1,35 @@
 ---
 import { marked } from 'marked';
+import Badge from './Badge.astro';
 
-marked.Renderer.prototype.paragraph = (text) => {
-    return text + '\n';
-};
-
-const { author, quote, 'data-sb-field-path': fieldPath } = Astro.props;
+const { badge, quote, author, theme, hasBorder, class: className, 'data-sb-field-path': fieldPath } = Astro.props;
 ---
 
-<div data-theme="light" class="testimonial | card l-stack l-center" data-sb-field-path={fieldPath}>
-    <figure class="l-stack">
-        {quote && <blockquote data-sb-field-path=".quote" set:html={marked.parse(quote)} />}
+<div
+    class:list={['card', hasBorder !== false && 'card-bordered', 'w-full max-w-2xl', className]}
+    {...theme && theme !== 'none' && { 'data-theme': theme }}
+    data-sb-field-path={fieldPath}
+>
+    <div class="text-left card-body">
+        {badge && badge.text && <Badge {...badge} class="mb-3" data-sb-field-path=".badge" />}
+        {quote && <blockquote class="text-lg sm:text-xl" data-sb-field-path=".quote" set:html={marked.parse(quote)} />}
         {
             author && (
-                <figcaption class="caption | l-cluster" data-sb-field-path=".author">
-                    <div>
-                        {author?.avatar && <img src={author?.avatar} alt="" class="w-24 mask mask-squircle" data-sb-field-path=".avatar" />}
-                        <dl style="--stack-space: var(--space-xs)" class="l-stack">
-                            {author?.name && (
-                                <dt class="author-name | font-bold tracking-tight" data-sb-field-path=".name">
-                                    {author?.name}
-                                </dt>
-                            )}
-                            <dd class="author-title | text--1 leading-snug">
-                                {author?.title && <span data-sb-field-path=".title">{author?.title},</span>}
-                                {author?.company?.name && <span data-sb-field-path=".company.name">{author?.company?.name}</span>}
-                            </dd>
-                        </dl>
-                    </div>
-                </figcaption>
+                <div class="flex flex-col gap-4 mt-4" data-sb-field-path=".author">
+                    {(author.name || author.title) && (
+                        <div class="font-bold">
+                            {author.name && <span data-sb-field-path=".name">{author.name}</span>}
+                            {','}
+                            {author.title && <span data-sb-field-path=".title">{author.title}</span>}
+                        </div>
+                    )}
+                    {author.image?.src && (
+                        <div class="w-16 overflow-hidden rounded-full aspect-square">
+                            <img src={author.image?.src} alt={author.image?.alt || ''} class="object-cover w-full h-full" data-sb-field-path=".image" />
+                        </div>
+                    )}
+                </div>
             )
         }
-    </figure>
+    </div>
 </div>

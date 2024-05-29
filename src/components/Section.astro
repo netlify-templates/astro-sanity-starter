@@ -1,0 +1,32 @@
+---
+import BackgroundImage from './BackgroundImage.astro';
+
+const { backgroundImage, theme, width, class: className, 'data-sb-field-path': fieldPath } = Astro.props;
+---
+
+{
+    width === 'inset' ? (
+        <section class="w-full px-3 sm:px-6" data-width="inset" data-sb-field-path={fieldPath}>
+            <div class:list={['relative py-16 mx-auto overflow-hidden max-w-7xl rounded-box sm:py-24', className]} data-theme={theme || 'light'}>
+                {backgroundImage && <BackgroundImage {...backgroundImage} data-sb-field-path=".backgroundImage" />}
+                <div class="relative w-10/12 mx-auto">
+                    <slot />
+                </div>
+            </div>
+        </section>
+    ) : (
+        <section class:list={['relative w-full px-3 py-16 sm:px-6 sm:py-24', className]} data-theme={theme || 'light'} data-sb-field-path={fieldPath}>
+            {backgroundImage && <BackgroundImage {...backgroundImage} data-sb-field-path=".backgroundImage" />}
+            <div class="relative mx-auto max-w-7xl">
+                <slot />
+            </div>
+        </section>
+    )
+}
+
+<style>
+    section[data-width='inset'] + section,
+    section + section[data-width='inset'] {
+        @apply mt-8 sm:mt-16;
+    }
+</style>

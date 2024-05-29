@@ -1,87 +1,91 @@
 import { type Model } from '@stackbit/types';
 
 export const Button: Model = {
-    type: 'object',
     name: 'Button',
+    type: 'object',
     label: 'Button',
     labelField: 'label',
     fields: [
         {
-            type: 'string',
             name: 'label',
+            type: 'string',
             label: 'Label',
-            required: false,
             default: 'Learn more',
-            hidden: false,
-            localized: false
+            required: true
         },
         {
-            type: 'string',
             name: 'ariaLabel',
-            label: 'Aria-label',
-            description: 'The alternative text for screen readers',
-            required: false,
-            default: '',
-            hidden: false,
-            localized: false
-        },
-        {
             type: 'string',
-            name: 'url',
-            label: 'URL',
-            required: true,
-            default: '/',
-            hidden: false,
-            localized: false
+            label: 'ARIA label',
+            description: "Additional information about the element's purpose and functionality to assistive technologies, such as screen readers (optional)"
         },
         {
-            type: 'enum',
+            name: 'url',
+            type: 'string',
+            label: 'URL',
+            default: '/',
+            required: true
+        },
+        {
             name: 'variant',
+            type: 'enum',
+            controlType: 'button-group',
             label: 'Variant',
-            required: false,
-            default: 'primary',
-            hidden: false,
-            localized: false,
+            options: [
+                {
+                    label: 'Solid',
+                    value: 'solid'
+                },
+                {
+                    label: 'Outline',
+                    value: 'outline'
+                },
+                {
+                    label: 'Text',
+                    value: 'text'
+                }
+            ],
+            default: 'solid',
+            group: 'styles'
+        },
+        {
+            name: 'theme',
+            type: 'enum',
+            controlType: 'palette',
+            label: 'Theme',
+            description: 'The color theme of the button',
             options: [
                 {
                     label: 'Primary',
-                    value: 'primary'
+                    value: 'primary',
+                    textColor: '#ffae9c',
+                    backgroundColor: '#ffae9c',
+                    borderColor: '#ececec'
                 },
                 {
                     label: 'Secondary',
-                    value: 'secondary'
+                    value: 'secondary',
+                    textColor: '#fff2d7',
+                    backgroundColor: '#fff2d7',
+                    borderColor: '#ececec'
                 },
                 {
-                    label: 'Ghost',
-                    value: 'ghost'
+                    label: 'Accent',
+                    value: 'accent',
+                    textColor: '#e3f1ff',
+                    backgroundColor: '#e3f1ff',
+                    borderColor: '#ececec'
+                },
+                {
+                    label: 'Neutral',
+                    value: 'neutral',
+                    textColor: '#d7d8e4',
+                    backgroundColor: '#d7d8e4',
+                    borderColor: '#ececec'
                 }
             ],
-            group: 'styles',
-            controlType: 'button-group'
-        },
-        {
-            type: 'string',
-            name: 'id',
-            label: 'Element ID',
-            description: 'The unique ID for an HTML element, must not contain whitespace',
-            required: false,
-            default: '',
-            hidden: false,
-            localized: false,
-            group: 'settings'
-        },
-        {
-            type: 'list',
-            name: 'dataset',
-            label: 'Data attributes',
-            required: false,
-            hidden: false,
-            localized: false,
-            items: {
-                type: 'model',
-                models: ['DataAttribute']
-            },
-            group: 'settings'
+            default: 'primary',
+            group: 'styles'
         }
     ],
     fieldGroups: [
@@ -89,11 +93,6 @@ export const Button: Model = {
             name: 'styles',
             label: 'Styles',
             icon: 'palette'
-        },
-        {
-            name: 'settings',
-            label: 'Settings',
-            icon: 'gear'
         }
     ]
 };

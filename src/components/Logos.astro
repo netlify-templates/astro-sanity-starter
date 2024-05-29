@@ -1,32 +1,28 @@
 ---
-const { heading, logos = [] } = Astro.props;
+import { marked } from 'marked';
+import LogoStripAnimated from '@components/LogoStripAnimated.astro';
+import LogoStripStatic from '@components/LogoStripStatic.astro';
+import Section from '@components/Section.astro';
+
+const { heading, body, logos, motion, ...rest } = Astro.props;
 ---
 
-<article class="text-center" "logos">
+<Section {...rest} class="text-center">
     {
         heading && (
-            <h2 id="title" class="text-3xl font-bold" data-sb-field-path=".heading">
+            <h2 class="text-2xl font-bold sm:text-4xl text-balance" data-sb-field-path=".heading">
                 {heading}
             </h2>
         )
     }
+    {body && <div class:list={['mx-auto', heading && 'mt-4', 'max-w-prose markdown']} data-sb-field-path=".body" set:html={marked.parse(body)} />}
     {
-        logos.length > 0 && (
-            <ul role="list" class="carousel py-8" data-sb-field-path=".logos">
-                {logos.map((logo, idx) => {
-                    return logo.src ? (
-                        <li class="carousel-item px-8">
-                            <img
-                                src={logo.src}
-                                alt={logo.alt}
-                                width={logo.width}
-                                height={logo.height}
-                                data-sb-field-path={`.${idx} .${idx}.src#@src .${idx}.alt#@alt`}
-                            />
-                        </li>
-                    ) : null;
-                })}
-            </ul>
-        )
+        logos &&
+            logos.length > 0 &&
+            (motion !== 'static' ? (
+                <LogoStripAnimated logos={logos} motion={motion} class={heading || body ? 'mt-8' : undefined} data-sb-field-path=".logos" />
+            ) : (
+                <LogoStripStatic logos={logos} class={heading || body ? 'mt-8' : undefined} data-sb-field-path=".logos" />
+            ))
     }
-</article>
+</Section>

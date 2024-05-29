@@ -1,0 +1,11 @@
+---
+const { logos, class: className, 'data-sb-field-path': fieldPath } = Astro.props;
+---
+
+<div class:list={['flex flex-wrap items-center justify-center gap-8', className]} data-sb-field-path={fieldPath}>
+    {
+        logos.map((logo, idx) => {
+            return logo.src ? <img src={logo.src} alt={logo.alt || ''} data-sb-field-path={`.${idx}`} /> : null;
+        })
+    }
+</div>

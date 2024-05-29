@@ -1,24 +1,27 @@
 ---
+import { marked } from 'marked';
 import Button from './Button.astro';
+import Section from '@components/Section.astro';
 
-const { heading, ctas = [] } = Astro.props;
+const { heading, body, cta, ...rest } = Astro.props;
 ---
 
-<section class="text-center" data-sb-field-path="cta">
+<Section {...rest} class="text-center">
     {
         heading && (
-            <h2 class="text-3xl font-bold text-center mb-6" data-sb-field-path=".heading">
+            <h2 class="text-2xl font-bold sm:text-4xl text-balance" data-sb-field-path=".heading">
                 {heading}
             </h2>
         )
     }
+    {body && <div class:list={['mx-auto', heading && 'mt-4', 'max-w-prose markdown']} data-sb-field-path=".body" set:html={marked.parse(body)} />}
     {
-        ctas.length > 0 && (
-            <div data-sb-field-path=".ctas">
-                {ctas.map((cta, idx) => (
-                    <Button {...cta} data-sb-field-path={`.${idx}`} />
+        cta && cta.length > 0 && (
+            <div class:list={[(heading || body) && 'mt-8', 'flex flex-wrap items-center justify-center gap-4']} data-sb-field-path=".cta">
+                {cta.map((item, index) => (
+                    <Button {...item} class:list={[cta.variant === 'text' && 'font-bold underline hover:no-underline']} data-sb-field-path={`.${index}`} />
                 ))}
             </div>
         )
     }
-</section>
+</Section>
