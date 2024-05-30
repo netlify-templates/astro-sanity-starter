@@ -1,5 +1,11 @@
 ---
-import BackgroundImage from './BackgroundImage.astro';
+import type { Section } from 'types';
+import BackgroundImage from '@components/BackgroundImage.astro';
+
+interface Props extends Section {
+    class?: string;
+    'data-sb-field-path'?: string;
+}
 
 const { backgroundImage, theme, width, class: className, 'data-sb-field-path': fieldPath } = Astro.props;
 ---

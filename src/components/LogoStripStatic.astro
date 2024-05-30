@@ -1,11 +1,22 @@
 ---
-const { logos, class: className, 'data-sb-field-path': fieldPath } = Astro.props;
+import type { LogosSection } from 'types';
+import ResponsiveImage from '@components/ResponsiveImage.astro';
+
+interface Props {
+    items: LogosSection['items'];
+    class?: string;
+    'data-sb-field-path'?: string;
+}
+
+const { items, class: className, 'data-sb-field-path': fieldPath } = Astro.props;
 ---
 
 <div class:list={['flex flex-wrap items-center justify-center gap-8', className]} data-sb-field-path={fieldPath}>
     {
-        logos.map((logo, idx) => {
-            return logo.src ? <img src={logo.src} alt={logo.alt || ''} data-sb-field-path={`.${idx}`} /> : null;
+        items.map((logo) => {
+            return logo.src ? (
+                <ResponsiveImage _id={logo._id} src={logo.src} width={logo.dimensions?.width} height={logo.dimensions?.height} alt={logo.alt} />
+            ) : null;
         })
     }
 </div>

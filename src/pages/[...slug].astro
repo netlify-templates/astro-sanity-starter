@@ -1,44 +1,49 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
+import type { Page } from 'types';
 import Layout from '@layouts/Layout.astro';
 import Cards from '@components/Cards.astro';
 import Cta from '@components/Cta.astro';
 import Hero from '@components/Hero.astro';
 import Logos from '@components/Logos.astro';
 import Testimonials from '@components/Testimonials.astro';
+import { fetchData, getPageById } from '@data/page';
 
 export async function getStaticPaths() {
-    const pages = await getCollection('pages');
-    return pages.map((page) => {
+    const data = await fetchData();
+    return data.map((page: Page) => {
+        const slug = page.slug.current === '/' ? undefined : page.slug.current;
         return {
-            params: { slug: page.slug !== 'index' ? page.slug : undefined },
-            props: { page }
+            params: { slug },
+            props: { id: page._id }
         };
     });
 }
 
-type Props = { page: CollectionEntry<'pages'> };
+const { id } = Astro.props;
+const pages = await getPageById(id);
+const page: Page = pages.length ? pages[0] : null;
 
-const { page } = Astro.props;
-const { title, sections, theme, metaTitle, addTitleSuffix, metaDescription, socialImage } = page.data;
+const { _id, title, sections, metaTitle, metaDescription, socialImage } = page || {};
 
 const componentMap = {
-    Cards: Cards,
-    Cta: Cta,
-    Hero: Hero,
-    Logos: Logos,
-    Testimonials: Testimonials
+    cardsSection: Cards,
+    ctaSection: Cta,
+    heroSection: Hero,
+    logosSection: Logos,
+    testimonialsSection: Testimonials
 };
 ---
 
-<Layout title={metaTitle ?? title} addTitleSuffix={addTitleSuffix} description={metaDescription} image={socialImage} theme={theme}>
-    <div data-sb-object-id={`src/content/pages/${page.id}`}>
-        {
-            sections?.length &&
-                sections.map((section, idx) => {
-                    const Component = componentMap[section.type];
-                    return <Component {...section} data-sb-field-path={`sections.${idx}`} />;
-                })
-        }
-    </div>
-</Layout>
+{
+    page && (
+        <Layout title={metaTitle ?? title} description={metaDescription} image={socialImage}>
+            <div data-sb-object-id={_id}>
+                {sections?.length &&
+                    sections.map((section, idx) => {
+                        const Component = componentMap[section._type];
+                        return <Component {...section} data-sb-field-path={`sections.${idx}`} />;
+                    })}
+            </div>
+        </Layout>
+    )
+}

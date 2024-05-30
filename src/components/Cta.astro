@@ -1,7 +1,12 @@
 ---
 import { marked } from 'marked';
-import Button from './Button.astro';
+import { type CtaSection } from 'types';
+import Action from '@components/Action.astro';
 import Section from '@components/Section.astro';
+
+interface Props extends CtaSection {
+    'data-sb-field-path'?: string;
+}
 
 const { heading, body, cta, ...rest } = Astro.props;
 ---
@@ -9,7 +14,7 @@ const { heading, body, cta, ...rest } = Astro.props;
 <Section {...rest} class="text-center">
     {
         heading && (
-            <h2 class="text-2xl font-bold sm:text-4xl text-balance" data-sb-field-path=".heading">
+            <h2 class="text-2xl font-black sm:text-4xl text-balance" data-sb-field-path=".heading">
                 {heading}
             </h2>
         )
@@ -19,7 +24,7 @@ const { heading, body, cta, ...rest } = Astro.props;
         cta && cta.length > 0 && (
             <div class:list={[(heading || body) && 'mt-8', 'flex flex-wrap items-center justify-center gap-4']} data-sb-field-path=".cta">
                 {cta.map((item, index) => (
-                    <Button {...item} class:list={[cta.variant === 'text' && 'font-bold underline hover:no-underline']} data-sb-field-path={`.${index}`} />
+                    <Action action={item} class:list={[item._type === 'text' && 'font-bold underline hover:no-underline']} data-sb-field-path={`.${index}`} />
                 ))}
             </div>
         )

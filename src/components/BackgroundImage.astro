@@ -1,11 +1,17 @@
 ---
+import { type BackgroundImage } from 'types';
+
+interface Props extends BackgroundImage {
+    'data-sb-field-path'?: string;
+}
+
 const { image, opacity, 'data-sb-field-path': fieldPath } = Astro.props;
 ---
 
 {
-    image && image.src && (
+    image?.src && (
         <div
-            class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            class="absolute inset-0 bg-center bg-no-repeat bg-cover"
             style={{
                 backgroundImage: `url('${image.src}')`,
                 opacity: (opacity ?? 100) * 0.01

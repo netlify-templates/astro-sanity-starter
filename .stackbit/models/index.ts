@@ -1,35 +1,30 @@
-import { Person } from './Person';
-import { BackgroundImage } from './BackgroundImage';
-import { Badge } from './Badge';
-import { Button } from './Button';
-import { Card } from './Card';
-import { Cards } from './Cards';
-import { Cta } from './Cta';
-import { Footer } from './Footer';
-import { Header } from './Header';
-import { Hero } from './Hero';
-import { Image } from './Image';
-import { Logos } from './Logos';
-import { Page } from './Page';
-import { SiteConfig } from './SiteConfig';
-import { Testimonial } from './Testimonial';
-import { Testimonials } from './Testimonials';
+import { type ModelExtension } from '@stackbit/types';
+import { backgroundImage } from './backgroundImage';
+import { badge } from './badge';
+import { actionButton } from './actionButton';
+import { card } from './card';
+import { cardsSection } from './cardsSection';
+import { ctaSection } from './ctaSection';
+import { heroSection } from './heroSection';
+import { logosSection } from './logosSection';
+import { page } from './page';
+import { person } from './person';
+import { siteConfig } from './siteConfig';
+import { testimonial } from './testimonial';
+import { testimonialsSection } from './testimonialsSection';
 
-export const allModels = {
-    Person,
-    BackgroundImage,
-    Badge,
-    Button,
-    Card,
-    Cards,
-    Cta,
-    Footer,
-    Header,
-    Hero,
-    Image,
-    Logos,
-    Page,
-    SiteConfig,
-    Testimonial,
-    Testimonials
-};
+export const allModelExtensions: ModelExtension[] = [
+    actionButton,
+    backgroundImage,
+    badge,
+    card,
+    cardsSection,
+    ctaSection,
+    heroSection,
+    logosSection,
+    page,
+    person,
+    siteConfig,
+    testimonial,
+    testimonialsSection
+];

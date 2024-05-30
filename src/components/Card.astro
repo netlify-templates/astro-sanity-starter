@@ -1,37 +1,50 @@
 ---
 import { marked } from 'marked';
-import Badge from './Badge.astro';
-import Button from './Button.astro';
+import { type Card } from 'types';
+import Action from '@components/Action.astro';
+import Badge from '@components/Badge.astro';
+import ResponsiveImage from '@components/ResponsiveImage.astro';
+
+interface Props extends Card {
+    class?: string;
+    'data-sb-field-path'?: string;
+}
 
 const { badge, heading, body, cta, image, theme, textAlign, hasBorder, class: className, 'data-sb-field-path': fieldPath } = Astro.props;
 ---
 
 <div
     class:list={['card', hasBorder !== false && 'card-bordered', 'w-full max-w-2xl', className]}
-    {...theme && theme !== 'none' && { 'data-theme': theme }}
+    {...theme && theme !== 'transparent' && { 'data-theme': theme }}
     data-sb-field-path={fieldPath}
 >
     {
         image && image.src && (
             <figure>
-                <img src={image.src} alt={image.alt || ''} data-sb-field-path=".image" />
+                <ResponsiveImage _id={image._id} src={image.src} width={image.dimensions?.width} height={image.dimensions?.height} alt={image.alt} />
             </figure>
         )
     }
-    <div class:list={['card-body', textAlign === 'center' ? 'items-center text-center' : 'text-left']}>
-        {badge && badge.text && <Badge {...badge} data-sb-field-path=".badge" />}
+    <div class:list={['card-body gap-4', textAlign === 'center' ? 'items-center text-center' : 'text-left']}>
+        {badge && badge.label && <Badge {...badge} data-sb-field-path=".badge" />}
         {
             heading && (
-                <h3 class="font-bold card-title" data-sb-field-path=".heading">
+                <h3 class="font-black card-title sm:text-2xl" data-sb-field-path=".heading">
                     {heading}
                 </h3>
             )
         }
         {body && <div class="markdown" set:html={marked.parse(body)} data-sb-field-path=".body" />}
         {
-            cta && cta.url && cta.label && (
-                <div class="card-actions">
-                    <Button {...cta} class:list={[cta.variant === 'text' && 'font-bold underline hover:no-underline']} data-sb-field-path=".cta" />
+            cta && cta.length > 0 && (
+                <div class="card-actions items-center" data-sb-field-path=".cta">
+                    {cta.map((item, index) => (
+                        <Action
+                            action={item}
+                            class:list={[item._type === 'actionLink' ? 'font-bold underline hover:no-underline' : 'px-4 py-2.5 h-auto min-h-0']}
+                            data-sb-field-path={`.${index}`}
+                        />
+                    ))}
                 </div>
             )
         }

@@ -1,5 +1,15 @@
 ---
-const { logos, motion, class: className, 'data-sb-field-path': fieldPath } = Astro.props;
+import type { LogosSection } from 'types';
+import ResponsiveImage from '@components/ResponsiveImage.astro';
+
+interface Props {
+    items: LogosSection['items'];
+    motion?: LogosSection['motion'];
+    class?: string;
+    'data-sb-field-path'?: string;
+}
+
+const { items, motion, class: className, 'data-sb-field-path': fieldPath } = Astro.props;
 ---
 
 <div
@@ -11,16 +21,16 @@ const { logos, motion, class: className, 'data-sb-field-path': fieldPath } = Ast
     <div
         class="relative overflow-hidden whitespace-nowrap"
         style={{
-            '--logo-slide-speed': `${logos.length * 8}s`
+            '--logo-slide-speed': `${items.length * 8}s`
         }}
     >
         <div class:list={['logo-strip', 'flex', ' items-center', 'w-max', motion === 'moveToLeft' ? 'logo-strip-slide-left' : 'logo-strip-slide-right']}>
             <div class="flex justify-around logo-strip-items" data-sb-field-path={fieldPath}>
                 {
-                    logos.map((logo, idx) => {
+                    items.map((logo) => {
                         return logo.src ? (
                             <div class="inline-flex items-center justify-center p-4">
-                                <img src={logo.src} alt={logo.alt || ''} data-sb-field-path={`.${idx}`} />
+                                <ResponsiveImage _id={logo._id} src={logo.src} width={logo.dimensions?.width} height={logo.dimensions?.height} alt={logo.alt} />
                             </div>
                         ) : null;
                     })
@@ -28,10 +38,10 @@ const { logos, motion, class: className, 'data-sb-field-path': fieldPath } = Ast
             </div>
             <div class="flex justify-around logo-strip-items" data-sb-field-path={fieldPath}>
                 {
-                    logos.map((logo, idx) => {
+                    items.map((logo) => {
                         return logo.src ? (
                             <div class="inline-flex items-center justify-center p-4">
-                                <img src={logo.src} alt={logo.alt || ''} data-sb-field-path={`.${idx}`} />
+                                <ResponsiveImage _id={logo._id} src={logo.src} width={logo.dimensions?.width} height={logo.dimensions?.height} alt={logo.alt} />
                             </div>
                         ) : null;
                     })

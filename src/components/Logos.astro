@@ -1,28 +1,33 @@
 ---
 import { marked } from 'marked';
+import { type LogosSection } from 'types';
 import LogoStripAnimated from '@components/LogoStripAnimated.astro';
 import LogoStripStatic from '@components/LogoStripStatic.astro';
 import Section from '@components/Section.astro';
 
-const { heading, body, logos, motion, ...rest } = Astro.props;
+interface Props extends LogosSection {
+    'data-sb-field-path'?: string;
+}
+
+const { heading, body, items, motion, ...rest } = Astro.props;
 ---
 
 <Section {...rest} class="text-center">
     {
         heading && (
-            <h2 class="text-2xl font-bold sm:text-4xl text-balance" data-sb-field-path=".heading">
+            <h2 class="text-2xl font-black sm:text-4xl text-balance" data-sb-field-path=".heading">
                 {heading}
             </h2>
         )
     }
     {body && <div class:list={['mx-auto', heading && 'mt-4', 'max-w-prose markdown']} data-sb-field-path=".body" set:html={marked.parse(body)} />}
     {
-        logos &&
-            logos.length > 0 &&
+        items &&
+            items.length > 0 &&
             (motion !== 'static' ? (
-                <LogoStripAnimated logos={logos} motion={motion} class={heading || body ? 'mt-8' : undefined} data-sb-field-path=".logos" />
+                <LogoStripAnimated items={items} motion={motion} class={heading || body ? 'mt-8' : undefined} data-sb-field-path=".items" />
             ) : (
-                <LogoStripStatic logos={logos} class={heading || body ? 'mt-8' : undefined} data-sb-field-path=".logos" />
+                <LogoStripStatic items={items} class={heading || body ? 'mt-8' : undefined} data-sb-field-path=".items" />
             ))
     }
 </Section>

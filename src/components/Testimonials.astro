@@ -1,27 +1,32 @@
 ---
 import { marked } from 'marked';
-import Testimonial from './Testimonial.astro';
+import { type TestimonialsSection } from 'types';
+import Testimonial from '@components/Testimonial.astro';
 import Section from '@components/Section.astro';
 
-const { heading, body, testimonials, columns, ...rest } = Astro.props;
+interface Props extends TestimonialsSection {
+    'data-sb-field-path'?: string;
+}
+
+const { heading, body, items, columns, ...rest } = Astro.props;
 ---
 
 <Section {...rest} class="text-center">
     {
         heading && (
-            <h2 class="text-2xl font-bold sm:text-4xl text-balance" data-sb-field-path=".heading">
+            <h2 class="text-2xl font-black sm:text-4xl text-balance" data-sb-field-path=".heading">
                 {heading}
             </h2>
         )
     }
     {body && <div class:list={['mx-auto', heading && 'mt-4', 'max-w-prose markdown']} data-sb-field-path=".body" set:html={marked.parse(body)} />}
     {
-        testimonials && testimonials?.length > 0 && (
+        items && items?.length > 0 && (
             <div
                 class:list={[(heading || body) && 'mt-8', 'grid gap-8 justify-items-center', columns !== 'one' && 'md:grid-cols-2']}
-                data-sb-field-path=".testimonials"
+                data-sb-field-path=".items"
             >
-                {testimonials?.map((testimonial, idx) => (
+                {items?.map((testimonial, idx) => (
                     <Testimonial {...testimonial} data-sb-field-path={`.${idx}`} />
                 ))}
             </div>

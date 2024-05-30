@@ -1,28 +1,23 @@
 ---
-import { Icon } from 'astro-icon/components';
-import HeaderNavLink from '@components/HeaderNavLink.astro';
-import Button from '@components/Button.astro';
+import { type Header } from 'types';
+import Action from '@components/Action.astro';
+import ResponsiveImage from '@components/ResponsiveImage.astro';
 
-interface Props {
-    type: string;
-    title?: string;
-    navLinks?: {
-        type: string;
-        label: string;
-        ariaLabel?: string;
-        url: string;
-        variant?: string;
-        theme?: string;
-    }[];
+interface Props extends Header {
+    'data-sb-field-path'?: string;
 }
 
-const { title, navLinks } = Astro.props;
+const { title, logo, navLinks, 'data-sb-field-path': fieldPath } = Astro.props;
 ---
 
-<nav class="p-4 sm:p-5" data-sb-field-path="src/data/siteConfig.json:header">
+<nav class="p-4 sm:p-5" data-sb-field-path={fieldPath}>
     <div class="flex items-center justify-between w-full gap-6 mx-auto max-w-7xl">
         {
-            title && (
+            logo.src ? (
+                <a class="flex items-center" href="/">
+                    <ResponsiveImage _id={logo._id} src={logo.src} width={logo.dimensions?.width} height={logo.dimensions?.height} alt={logo.alt} />
+                </a>
+            ) : (
                 <a class="text-xl font-bold sm:text-2xl" href="/" data-sb-field-path=".title">
                     {title}
                 </a>
@@ -34,9 +29,9 @@ const { title, navLinks } = Astro.props;
                     <ul class="hidden lg:flex lg:flex-wrap lg:items-center lg:gap-6" data-sb-field-path=".navLinks">
                         {navLinks.map((item, index) => (
                             <li>
-                                <Button
-                                    {...item}
-                                    class:list={[item.variant !== 'text' ? 'px-4 py-3 h-auto min-h-0' : 'no-underline hover:underline']}
+                                <Action
+                                    action={item}
+                                    class:list={[item._type === 'actionLink' ? 'no-underline hover:underline' : 'px-4 py-3 h-auto min-h-0']}
                                     data-sb-field-path={`.${index}`}
                                 />
                             </li>
@@ -55,10 +50,10 @@ const { title, navLinks } = Astro.props;
                             <ul class="flex flex-col px-4 pb-6 pt-14" data-sb-field-path=".navLinks">
                                 {navLinks.map((item, index) => (
                                     <li>
-                                        <Button
-                                            {...item}
+                                        <Action
+                                            action={item}
                                             class:list={[
-                                                item.variant !== 'text' ? 'w-full px-4 py-3.5 h-auto min-h-0' : 'block py-2 no-underline hover:underline'
+                                                item._type === 'actionLink' ? 'block py-2 no-underline hover:underline' : 'w-full px-4 py-3.5 h-auto min-h-0'
                                             ]}
                                             data-sb-field-path={`.${index}`}
                                         />

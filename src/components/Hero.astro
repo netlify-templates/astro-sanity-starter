@@ -1,7 +1,12 @@
 ---
 import { marked } from 'marked';
-import Button from '@components/Button.astro';
+import { type HeroSection } from 'types';
+import Action from '@components/Action.astro';
 import Section from '@components/Section.astro';
+
+interface Props extends HeroSection {
+    'data-sb-field-path'?: string;
+}
 
 const { heading, body, cta, ...rest } = Astro.props;
 ---
@@ -9,7 +14,7 @@ const { heading, body, cta, ...rest } = Astro.props;
 <Section {...rest} class="text-center">
     {
         heading && (
-            <h1 class="text-4xl font-bold sm:text-6xl text-balance" data-sb-field-path=".heading">
+            <h1 class="text-4xl font-black sm:text-6xl text-balance" data-sb-field-path=".heading">
                 {heading}
             </h1>
         )
@@ -19,7 +24,11 @@ const { heading, body, cta, ...rest } = Astro.props;
         cta && cta.length > 0 && (
             <div class:list={[(heading || body) && 'mt-8', 'flex flex-wrap items-center justify-center gap-4']} data-sb-field-path=".cta">
                 {cta.map((item, index) => (
-                    <Button {...item} class:list={[cta.variant === 'text' && 'font-bold underline hover:no-underline']} data-sb-field-path={`.${index}`} />
+                    <Action
+                        action={item}
+                        class:list={[item._type === 'actionLink' && 'font-bold underline hover:no-underline']}
+                        data-sb-field-path={`.${index}`}
+                    />
                 ))}
             </div>
         )
