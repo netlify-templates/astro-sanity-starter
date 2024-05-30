@@ -1,11 +1,18 @@
 import { defineConfig } from 'astro/config';
-import icon from 'astro-icon';
 import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
+    image: {
+        domains: ['cdn.sanity.io']
+    },
+    vite: {
+        server: {
+            hmr: { path: '/vite-hmr/' }
+        },
+        optimizeDeps: { exclude: ['fsevents'] }
+    },
     integrations: [
-        icon(),
         tailwind({
             applyBaseStyles: false
         })

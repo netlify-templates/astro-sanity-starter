@@ -1,31 +1,59 @@
 ---
 import { marked } from 'marked';
-import Badge from './Badge.astro';
+import { type Testimonial } from 'types';
+import ResponsiveImage from '@components/ResponsiveImage.astro';
 
-const { badge, quote, author, theme, hasBorder, class: className, 'data-sb-field-path': fieldPath } = Astro.props;
+interface Props extends Testimonial {
+    class?: string;
+    'data-sb-field-path'?: string;
+}
+
+const { quote, author, theme, hasBorder, class: className, 'data-sb-field-path': fieldPath } = Astro.props;
 ---
 
 <div
     class:list={['card', hasBorder !== false && 'card-bordered', 'w-full max-w-2xl', className]}
-    {...theme && theme !== 'none' && { 'data-theme': theme }}
+    {...theme && theme !== 'transparent' && { 'data-theme': theme }}
     data-sb-field-path={fieldPath}
 >
     <div class="text-left card-body">
-        {badge && badge.text && <Badge {...badge} class="mb-3" data-sb-field-path=".badge" />}
+        {
+            author?.company && (
+                <div class="mb-4 font-bold" data-sb-field-path=".author.company">
+                    {author.company?.logo?.src ? (
+                        <ResponsiveImage
+                            _id={author.company.logo._id}
+                            src={author.company.logo.src}
+                            width={author.company.logo.dimensions?.width}
+                            height={author.company.logo.dimensions?.height}
+                            alt={author.company.logo.alt}
+                            class="max-w-24"
+                        />
+                    ) : (
+                        <span data-sb-field-path=".name">{author.company.name}</span>
+                    )}
+                </div>
+            )
+        }
         {quote && <blockquote class="text-lg sm:text-xl" data-sb-field-path=".quote" set:html={marked.parse(quote)} />}
         {
             author && (
                 <div class="flex flex-col gap-4 mt-4" data-sb-field-path=".author">
-                    {(author.name || author.title) && (
-                        <div class="font-bold">
-                            {author.name && <span data-sb-field-path=".name">{author.name}</span>}
-                            {','}
-                            {author.title && <span data-sb-field-path=".title">{author.title}</span>}
-                        </div>
-                    )}
+                    <div class="font-bold">
+                        <!-- prettier-ignore -->
+                        <span data-sb-field-path=".name">{author.name}</span>{author.title && (<>{', '}<span data-sb-field-path=".title">{author.title}</span></>)}
+                    </div>
+
                     {author.image?.src && (
-                        <div class="w-16 overflow-hidden rounded-full aspect-square">
-                            <img src={author.image?.src} alt={author.image?.alt || ''} class="object-cover w-full h-full" data-sb-field-path=".image" />
+                        <div class="w-20 overflow-hidden rounded-full aspect-square">
+                            <ResponsiveImage
+                                _id={author.image._id}
+                                src={author.image.src}
+                                width={80}
+                                height={80}
+                                alt={author.image.alt}
+                                class="object-cover w-full h-full"
+                            />
                         </div>
                     )}
                 </div>

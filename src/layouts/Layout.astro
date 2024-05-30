@@ -1,46 +1,23 @@
 ---
+import { type SiteConfig, type CustomImage } from 'types';
 import Footer from '@components/Footer.astro';
 import Header from '@components/Header.astro';
-import siteConfigData from '@data/siteConfig.json';
+import { fetchData } from '@data/siteConfig';
 import '@styles/globals.css';
-
-interface SiteConfigProps {
-    type: string;
-    favicon?: string;
-    titleSuffix?: string;
-    header?: {
-        type: string;
-        title?: string;
-        navLinks?: {
-            type: string;
-            label: string;
-            ariaLabel?: string;
-            url: string;
-            variant?: string;
-            theme?: string;
-        }[];
-    };
-    footer?: { type: string; copyrightText?: string };
-}
 
 interface Props {
     title: string;
     addTitleSuffix?: boolean;
     description?: string;
-    image?: { type?: 'Image'; src?: string; alt?: string };
-    theme?: 'light' | 'dark';
+    image?: CustomImage;
 }
 
-const { addTitleSuffix, description, image, theme } = Astro.props;
-const siteConfig: SiteConfigProps = siteConfigData;
-const titleSuffix = siteConfig.titleSuffix && addTitleSuffix !== false ? siteConfig.titleSuffix : undefined;
+const { addTitleSuffix, description, image } = Astro.props;
+
+const configData: SiteConfig = (await fetchData()) || {};
+const titleSuffix = configData.titleSuffix && addTitleSuffix !== false ? configData.titleSuffix : undefined;
 const title = [Astro.props.title, titleSuffix].filter(Boolean).join(' | ');
-const resolvedImage = image?.src
-    ? {
-          src: new URL(image.src, Astro.site).toString(),
-          alt: image.alt
-      }
-    : undefined;
+const resolvedImage = image?.src ? { src: new URL(image.src, Astro.site).toString() } : undefined;
 const canonicalURL = new URL(Astro.request.url, Astro.site);
 
 /**
@@ -59,7 +36,7 @@ function formatCanonicalURL(url: string | URL) {
 ---
 
 <!doctype html>
-<html lang="en" data-theme={theme || 'light'}>
+<html lang="en" data-theme="light">
     <head>
         <!-- High Priority Global Metadata -->
         <meta charset="utf-8" />
@@ -70,10 +47,10 @@ function formatCanonicalURL(url: string | URL) {
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
 
         <!-- Low Priority Global Metadata -->
-        {siteConfig.favicon && <link rel="icon" type="image/svg+xml" href="/favicon.svg" />}
+        {configData.favicon?.src && <link rel="icon" type="image/svg+xml" href={configData.favicon.src} />}
         <link rel="sitemap" href="/sitemap-index.xml" />
 
         <!-- Page Metadata -->
@@ -85,7 +62,6 @@ function formatCanonicalURL(url: string | URL) {
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         {resolvedImage?.src && <meta property="og:image" content={resolvedImage.src} />}
-        {resolvedImage?.alt && <meta property="og:image:alt" content={resolvedImage.alt} />}
 
         <!-- X/Twitter -->
         <meta property="twitter:card" content="summary_large_image" />
@@ -93,11 +69,10 @@ function formatCanonicalURL(url: string | URL) {
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={description} />
         {resolvedImage?.src && <meta property="twitter:image" content={resolvedImage.src} />}
-        {resolvedImage?.alt && <meta name="twitter:image:alt" content={resolvedImage?.alt} />}
     </head>
     <body class="antialiased">
-        <Header {...siteConfig.header} />
+        <Header {...configData.header} data-sb-field-path={`${configData._id}:header`} />
         <slot />
-        <Footer {...siteConfig.footer} />
+        <Footer {...configData.footer} data-sb-field-path={`${configData._id}:footer`} />
     </body>
 </html>

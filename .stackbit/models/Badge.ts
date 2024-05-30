@@ -1,24 +1,11 @@
-import { type Model } from '@stackbit/types';
+import { type ModelExtension } from '@stackbit/types';
 
-export const Badge: Model = {
-    name: 'Badge',
-    type: 'object',
-    label: 'Badge',
-    labelField: 'text',
+export const badge: ModelExtension = {
+    name: 'badge',
     fields: [
         {
-            type: 'string',
-            name: 'text',
-            label: 'Text',
-            default: 'This is the badge',
-            required: true
-        },
-        {
             name: 'theme',
-            type: 'enum',
             controlType: 'palette',
-            label: 'Theme',
-            description: 'The color theme of the badge',
             options: [
                 {
                     label: 'Primary',
@@ -48,16 +35,7 @@ export const Badge: Model = {
                     backgroundColor: '#d7d8e4',
                     borderColor: '#ececec'
                 }
-            ],
-            default: 'primary',
-            group: 'styles'
-        }
-    ],
-    fieldGroups: [
-        {
-            name: 'styles',
-            label: 'Styles',
-            icon: 'palette'
+            ]
         }
     ]
 };

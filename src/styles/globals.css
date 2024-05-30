@@ -3,21 +3,28 @@
 @tailwind utilities;
 
 @layer components {
-    .markdown a {
-        @apply underline transition hover:decoration-primary;
-    }
-
-    .markdown > p,
-    .markdown > ul,
-    .markdown > ol {
-        @apply my-4;
-    }
-
-    .markdown > :first-child {
-        @apply mt-0;
-    }
-
-    .markdown > :last-child {
-        @apply mb-0;
+    .markdown {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            @apply font-black;
+        }
+        a {
+            @apply underline transition hover:decoration-primary;
+        }
+        > p,
+        > ul,
+        > ol {
+            @apply my-4;
+        }
+        > :first-child {
+            @apply mt-0;
+        }
+        > :last-child {
+            @apply mb-0;
+        }
     }
 }

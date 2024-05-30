@@ -1,5 +1,12 @@
 ---
-const { id, label, ariaLabel, url, variant, theme, class: className, 'data-sb-field-path': fieldPath } = Astro.props;
+import { type Action } from 'types';
+
+interface Props extends Action {
+    class?: string;
+    'data-sb-field-path'?: string;
+}
+
+const { label, ariaLabel, url, variant, theme, class: className, 'data-sb-field-path': fieldPath } = Astro.props;
 
 const textColorMap = {
     primary: 'text-primary',
@@ -31,17 +38,11 @@ function mapClassNames(variant, theme) {
 
 {
     url ? (
-        <a
-            class:list={[mapClassNames(variant || 'solid', theme || 'primary'), className]}
-            href={url}
-            id={id}
-            aria-label={ariaLabel}
-            data-sb-field-path={fieldPath}
-        >
+        <a class:list={[mapClassNames(variant || 'solid', theme || 'primary'), className]} href={url} aria-label={ariaLabel} data-sb-field-path={fieldPath}>
             <span data-sb-field-path={fieldPath ? '.label' : undefined}>{label}</span>
         </a>
     ) : (
-        <button class:list={[mapClassNames(variant || 'solid', theme || 'primary'), className]} id={id} aria-label={ariaLabel} data-sb-field-path={fieldPath}>
+        <button class:list={[mapClassNames(variant || 'solid', theme || 'primary'), className]} aria-label={ariaLabel} data-sb-field-path={fieldPath}>
             <span {...(fieldPath && { 'data-sb-field-path': '.label' })}>{label}</span>
         </button>
     )

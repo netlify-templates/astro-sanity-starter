@@ -1,11 +1,12 @@
+import path from 'path';
 import { defineStackbitConfig } from '@stackbit/types';
-import { GitContentSource } from '@stackbit/cms-git';
-import { allModels } from './.stackbit/models';
+import { SanityContentSource } from '@stackbit/cms-sanity';
+import { allModelExtensions } from './.stackbit/models';
 
 export default defineStackbitConfig({
     stackbitVersion: '~0.6.0',
-    ssgName: 'custom',
     nodeVersion: '18',
+    ssgName: 'custom',
     devCommand: 'node_modules/.bin/astro dev --port {PORT} --hostname 127.0.0.1',
     experimental: {
         ssg: {
@@ -20,16 +21,14 @@ export default defineStackbitConfig({
         }
     },
     contentSources: [
-        new GitContentSource({
+        new SanityContentSource({
             rootPath: __dirname,
-            contentDirs: ['src/content', 'src/data'],
-            models: Object.values(allModels),
-            assetsConfig: {
-                referenceType: 'static',
-                staticDir: 'public',
-                uploadDir: '/',
-                publicPath: '/'
-            }
+            studioPath: path.join(__dirname, 'studio'),
+            studioUrl: '',
+            projectId: process.env.SANITY_PROJECT_ID!,
+            token: process.env.SANITY_ACCESS_TOKEN!,
+            dataset: process.env.SANITY_DATASET || 'production'
         })
-    ]
+    ],
+    modelExtensions: allModelExtensions
 });
