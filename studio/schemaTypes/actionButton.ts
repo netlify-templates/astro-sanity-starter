@@ -1,8 +1,8 @@
 import {defineField, defineType} from 'sanity'
 
 export default defineType({
-  name: 'action',
-  title: 'Action',
+  name: 'actionButton',
+  title: 'Button',
   type: 'object',
   groups: [
     {
@@ -38,21 +38,6 @@ export default defineType({
       group: 'content',
     }),
     defineField({
-      name: 'variant',
-      title: 'Variant',
-      description: 'The version of the call-to-action button',
-      type: 'string',
-      options: {
-        list: [
-          {title: 'Solid', value: 'solid'},
-          {title: 'Outline', value: 'outline'},
-          {title: 'Text', value: 'text'},
-        ],
-      },
-      initialValue: 'solid',
-      group: 'styles',
-    }),
-    defineField({
       name: 'theme',
       title: 'Theme',
       description: 'The color theme of call-to-action button',
@@ -69,4 +54,15 @@ export default defineType({
       group: 'styles',
     }),
   ],
+  preview: {
+    select: {
+      label: 'label',
+    },
+    prepare(selection) {
+      return {
+        title: selection.label,
+        subtitle: 'Button',
+      }
+    },
+  },
 })

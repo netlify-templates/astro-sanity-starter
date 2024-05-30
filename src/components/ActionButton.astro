@@ -1,0 +1,29 @@
+---
+import { type ActionButton } from 'types';
+
+interface Props extends ActionButton {
+    class?: string;
+    'data-sb-field-path'?: string;
+}
+
+const { label, ariaLabel, url, theme, class: className, 'data-sb-field-path': fieldPath } = Astro.props;
+
+const themeClassMap = {
+    primary: 'btn-primary',
+    secondary: 'btn-secondary',
+    accent: 'btn-accent',
+    neutral: 'btn-neutral'
+};
+---
+
+{
+    url ? (
+        <a class:list={['btn', themeClassMap[theme || 'primary'], className]} href={url} aria-label={ariaLabel} data-sb-field-path={fieldPath}>
+            <span data-sb-field-path={fieldPath ? '.label' : undefined}>{label}</span>
+        </a>
+    ) : (
+        <button class:list={['btn', themeClassMap[theme || 'primary'], className]} aria-label={ariaLabel} data-sb-field-path={fieldPath}>
+            <span data-sb-field-path={fieldPath ? '.label' : undefined}>{label}</span>
+        </button>
+    )
+}

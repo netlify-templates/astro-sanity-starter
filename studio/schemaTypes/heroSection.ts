@@ -25,7 +25,7 @@ export default defineType({
       name: 'cta',
       title: 'Call-to-action',
       type: 'array',
-      of: [{type: 'action'}],
+      of: [{type: 'actionButton'}, {type: 'actionLink'}],
       group: 'content',
     }),
     ...SECTION_BASE_FIELDS,

@@ -30,8 +30,8 @@ const { title, logo, navLinks, 'data-sb-field-path': fieldPath } = Astro.props;
                         {navLinks.map((item, index) => (
                             <li>
                                 <Action
-                                    {...item}
-                                    class:list={[item.variant !== 'text' ? 'px-4 py-3 h-auto min-h-0' : 'no-underline hover:underline']}
+                                    action={item}
+                                    class:list={[item._type === 'actionLink' ? 'no-underline hover:underline' : 'px-4 py-3 h-auto min-h-0']}
                                     data-sb-field-path={`.${index}`}
                                 />
                             </li>
@@ -51,9 +51,9 @@ const { title, logo, navLinks, 'data-sb-field-path': fieldPath } = Astro.props;
                                 {navLinks.map((item, index) => (
                                     <li>
                                         <Action
-                                            {...item}
+                                            action={item}
                                             class:list={[
-                                                item.variant !== 'text' ? 'w-full px-4 py-3.5 h-auto min-h-0' : 'block py-2 no-underline hover:underline'
+                                                item._type === 'actionLink' ? 'block py-2 no-underline hover:underline' : 'w-full px-4 py-3.5 h-auto min-h-0'
                                             ]}
                                             data-sb-field-path={`.${index}`}
                                         />

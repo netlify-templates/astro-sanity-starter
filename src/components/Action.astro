@@ -1,49 +1,21 @@
 ---
-import { type Action } from 'types';
+import type { ActionButton as ActionButtonProps, ActionLink as ActionLinkProps } from 'types';
+import ActionButton from '@components/ActionButton.astro';
+import ActionLink from '@components/ActionLink.astro';
 
-interface Props extends Action {
+interface Props {
+    action: ActionButtonProps | ActionLinkProps;
     class?: string;
     'data-sb-field-path'?: string;
 }
 
-const { label, ariaLabel, url, variant, theme, class: className, 'data-sb-field-path': fieldPath } = Astro.props;
+const { action, class: className, 'data-sb-field-path': fieldPath } = Astro.props;
 
-const textColorMap = {
-    primary: 'text-primary',
-    secondary: 'text-secondary',
-    accent: 'text-accent',
-    neutral: 'text-neutral'
+const componentMap = {
+    actionButton: ActionButton,
+    actionLink: ActionLink
 };
-
-const buttonColorMap = {
-    primary: 'btn-primary',
-    secondary: 'btn-secondary',
-    accent: 'btn-accent',
-    neutral: ''
-};
-
-function mapClassNames(variant, theme) {
-    let classNames = Array();
-    if (variant === 'text') {
-        classNames.push(textColorMap[theme]);
-    } else {
-        classNames.push('btn', buttonColorMap[theme]);
-        if (variant === 'outline') {
-            classNames.push('btn-outline');
-        }
-    }
-    return classNames.join(' ');
-}
+const Component = componentMap[action._type];
 ---
 
-{
-    url ? (
-        <a class:list={[mapClassNames(variant || 'solid', theme || 'primary'), className]} href={url} aria-label={ariaLabel} data-sb-field-path={fieldPath}>
-            <span data-sb-field-path={fieldPath ? '.label' : undefined}>{label}</span>
-        </a>
-    ) : (
-        <button class:list={[mapClassNames(variant || 'solid', theme || 'primary'), className]} aria-label={ariaLabel} data-sb-field-path={fieldPath}>
-            <span {...(fieldPath && { 'data-sb-field-path': '.label' })}>{label}</span>
-        </button>
-    )
-}
+<Component {...action} class={className} data-sb-field-path={fieldPath} />

@@ -24,7 +24,7 @@ const { heading, body, cta, ...rest } = Astro.props;
         cta && cta.length > 0 && (
             <div class:list={[(heading || body) && 'mt-8', 'flex flex-wrap items-center justify-center gap-4']} data-sb-field-path=".cta">
                 {cta.map((item, index) => (
-                    <Action {...item} class:list={[item.variant === 'text' && 'font-bold underline hover:no-underline']} data-sb-field-path={`.${index}`} />
+                    <Action action={item} class:list={[item._type === 'text' && 'font-bold underline hover:no-underline']} data-sb-field-path={`.${index}`} />
                 ))}
             </div>
         )

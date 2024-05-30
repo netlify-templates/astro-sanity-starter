@@ -25,20 +25,26 @@ const { badge, heading, body, cta, image, theme, textAlign, hasBorder, class: cl
             </figure>
         )
     }
-    <div class:list={['card-body', textAlign === 'center' ? 'items-center text-center' : 'text-left']}>
+    <div class:list={['card-body gap-4', textAlign === 'center' ? 'items-center text-center' : 'text-left']}>
         {badge && badge.label && <Badge {...badge} data-sb-field-path=".badge" />}
         {
             heading && (
-                <h3 class="font-black card-title" data-sb-field-path=".heading">
+                <h3 class="font-black card-title sm:text-2xl" data-sb-field-path=".heading">
                     {heading}
                 </h3>
             )
         }
         {body && <div class="markdown" set:html={marked.parse(body)} data-sb-field-path=".body" />}
         {
-            cta && cta.url && cta.label && (
-                <div class="card-actions">
-                    <Action {...cta} class:list={[cta.variant === 'text' && 'font-bold underline hover:no-underline']} data-sb-field-path=".cta" />
+            cta && cta.length > 0 && (
+                <div class="card-actions items-center" data-sb-field-path=".cta">
+                    {cta.map((item, index) => (
+                        <Action
+                            action={item}
+                            class:list={[item._type === 'actionLink' ? 'font-bold underline hover:no-underline' : 'px-4 py-2.5 h-auto min-h-0']}
+                            data-sb-field-path={`.${index}`}
+                        />
+                    ))}
                 </div>
             )
         }

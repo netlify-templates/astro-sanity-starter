@@ -1,11 +1,9 @@
 import {defineField, defineType} from 'sanity'
-import {SquareIcon} from '@sanity/icons'
 
 export default defineType({
-  name: 'header',
-  title: 'Header',
+  name: 'actionLink',
+  title: 'Link',
   type: 'object',
-  icon: SquareIcon,
   groups: [
     {
       name: 'content',
@@ -15,35 +13,35 @@ export default defineType({
   ],
   fields: [
     defineField({
-      name: 'title',
-      title: 'Title',
+      name: 'label',
+      title: 'Label',
       type: 'string',
       validation: (Rule) => Rule.required(),
       group: 'content',
     }),
     defineField({
-      name: 'logo',
-      title: 'Logo',
-      type: 'customImage',
+      name: 'url',
+      title: 'URL',
+      type: 'string',
       group: 'content',
     }),
     defineField({
-      name: 'navLinks',
-      title: 'Navigation links',
-      type: 'array',
-      of: [{type: 'actionButton'}, {type: 'actionLink'}],
+      name: 'ariaLabel',
+      title: 'ARIA Label',
+      description:
+        "(Optional) Provide additional information about the element's purpose and functionality to assistive technologies, such as screen readers",
+      type: 'string',
       group: 'content',
     }),
   ],
   preview: {
     select: {
-      title: 'title',
-      media: 'logo.image.asset',
+      label: 'label',
     },
     prepare(selection) {
       return {
-        title: selection.title,
-        media: selection.media,
+        title: selection.label,
+        subtitle: 'Link',
       }
     },
   },

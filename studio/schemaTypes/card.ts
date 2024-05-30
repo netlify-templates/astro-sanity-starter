@@ -37,7 +37,8 @@ export default defineType({
     defineField({
       name: 'cta',
       title: 'Call-to-action',
-      type: 'action',
+      type: 'array',
+      of: [{type: 'actionButton'}, {type: 'actionLink'}],
       group: 'content',
     }),
     defineField({

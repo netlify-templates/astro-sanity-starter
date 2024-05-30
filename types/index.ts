@@ -1,10 +1,15 @@
 export interface Action {
+    _type?: string;
     label: string;
     url?: string;
     ariaLabel?: string;
-    variant?: 'solid' | 'outline' | 'text';
+}
+
+export interface ActionButton extends Action {
     theme?: 'primary' | 'secondary' | 'accent' | 'neutral';
 }
+
+export interface ActionLink extends Action {}
 
 export interface BackgroundImage {
     image?: CustomImage;
@@ -20,7 +25,7 @@ export interface Card {
     badge?: Badge;
     heading?: string;
     body?: string;
-    cta?: Action;
+    cta?: Array<ActionButton | ActionLink>;
     image?: CustomImage;
     theme?: 'light' | 'dark' | 'transparent';
     textAlign?: 'left' | 'center';
@@ -50,7 +55,7 @@ export interface CustomImage {
 export interface CtaSection extends Section {
     heading?: string;
     body?: string;
-    cta?: Array<Action>;
+    cta?: Array<ActionButton | ActionLink>;
 }
 
 export interface Footer {
@@ -60,13 +65,13 @@ export interface Footer {
 export interface Header {
     title?: string;
     logo?: CustomImage;
-    navLinks?: Array<Action>;
+    navLinks?: Array<ActionButton | ActionLink>;
 }
 
 export interface HeroSection extends Section {
     heading?: string;
     body?: string;
-    cta?: Array<Action>;
+    cta?: Array<ActionButton | ActionLink>;
 }
 
 export interface LogosSection extends Section {

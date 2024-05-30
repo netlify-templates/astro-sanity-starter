@@ -1,0 +1,22 @@
+---
+import { type ActionLink } from 'types';
+
+interface Props extends ActionLink {
+    class?: string;
+    'data-sb-field-path'?: string;
+}
+
+const { label, ariaLabel, url, class: className, 'data-sb-field-path': fieldPath } = Astro.props;
+---
+
+{
+    url ? (
+        <a class:list={['text-neutral', className]} href={url} aria-label={ariaLabel} data-sb-field-path={fieldPath}>
+            <span data-sb-field-path={fieldPath ? '.label' : undefined}>{label}</span>
+        </a>
+    ) : (
+        <button class:list={['text-neutral', className]} aria-label={ariaLabel} data-sb-field-path={fieldPath}>
+            <span data-sb-field-path={fieldPath ? '.label' : undefined}>{label}</span>
+        </button>
+    )
+}

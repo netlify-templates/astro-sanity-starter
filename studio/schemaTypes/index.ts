@@ -1,4 +1,5 @@
-import action from './action'
+import actionButton from './actionButton'
+import actionLink from './actionLink'
 import backgroundImage from './backgroundImage'
 import badge from './badge'
 import card from './card'
@@ -17,7 +18,8 @@ import testimonial from './testimonial'
 import testimonialsSection from './testimonialsSection'
 
 export const schemaTypes = [
-  action,
+  actionButton,
+  actionLink,
   backgroundImage,
   badge,
   card,
