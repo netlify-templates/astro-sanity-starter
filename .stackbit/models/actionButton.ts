@@ -31,8 +31,8 @@ export const actionButton: ModelExtension = {
                 {
                     label: 'Neutral',
                     value: 'neutral',
-                    textColor: '#171227',
-                    backgroundColor: '#d7d8e4',
+                    textColor: '#d7d8e4',
+                    backgroundColor: '#171227',
                     borderColor: '#ececec'
                 }
             ]
