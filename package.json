@@ -1,28 +1,33 @@
 {
     "name": "astro-sanity-starter",
-    "type": "module",
     "version": "0.0.1",
     "scripts": {
         "dev": "astro dev",
         "start": "astro dev",
         "build": "astro build",
         "preview": "astro preview",
-        "astro": "astro"
+        "astro": "astro",
+        "create-project": "node ./sanity-export/create-project.js",
+        "import": "node ./sanity-export/import.js",
+        "export": "node ./sanity-export/export.js"
     },
     "dependencies": {
-        "@sanity/client": "^6.19.0",
-        "@sanity/validation": "^3.14.4",
         "@astrojs/tailwind": "^5.1.0",
-        "astro": "^4.9.0",
+        "@sanity/client": "^6.19.1",
+        "@sanity/validation": "^3.14.4",
+        "astro": "^4.9.2",
         "astro-icon": "^1.1.0",
+        "dotenv": "^16.4.5",
         "marked": "^12.0.2",
-        "tailwindcss": "^3.4.3"
+        "tailwindcss": "^3.4.3",
+        "fs-extra": "^11.2.0"
     },
     "devDependencies": {
         "@sanity/export": "^3.38.1",
         "@sanity/import": "^3.37.4",
         "@stackbit/cms-sanity": "^0.2.56",
         "@stackbit/types": "^1.0.1",
+        "configstore": "5.0.1",
         "daisyui": "^4.10.2"
     }
 }

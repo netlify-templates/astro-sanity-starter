@@ -8,7 +8,7 @@ export default defineConfig({
   name: 'default',
   title: 'Astro Sanity Starter',
 
-  projectId: 'b5s0ygf4',
+  projectId: 'SANITY_PROJECT_ID',
   dataset: 'production',
 
   plugins: [structureTool(), visionTool(), markdownSchema()],
