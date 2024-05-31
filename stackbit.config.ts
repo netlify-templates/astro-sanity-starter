@@ -36,7 +36,7 @@ export default defineStackbitConfig({
             studioPath: path.join(__dirname, 'studio'),
             studioUrl: '',
             projectId: process.env.SANITY_PROJECT_ID!,
-            token: process.env.SANITY_ACCESS_TOKEN!,
+            token: process.env.SANITY_TOKEN!,
             dataset: process.env.SANITY_DATASET || 'production'
         })
     ],
