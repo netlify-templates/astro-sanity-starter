@@ -1,22 +1,18 @@
-#!/usr/bin/env node
-
 const path = require('path');
 const { createClient } = require('@sanity/client');
 const exportDataset = require('@sanity/export');
-require('dotenv').config();
+const Configstore = require('configstore');
 
-// Load environment variables
-const projectId = process.env.SANITY_PROJECT_ID;
-const dataset = process.env.SANITY_DATASET;
-const token = process.env.SANITY_ACCESS_TOKEN;
-
+const config = new Configstore('sanity', {}, { globalConfigPath: true });
+const token = config.get('authToken');
+const projectId = process.argv[2];
 const compress = true;
 
 const client = createClient({
-    projectId: projectId,
-    dataset: dataset,
+    projectId: process.env.SANITY_PROJECT_ID || projectId,
+    dataset: process.env.SANITY_DATASET || 'production',
+    token: process.env.SANITY_TOKEN || token,
     apiVersion: '2024-01-31',
-    token: token,
     useCdn: false
 });
 

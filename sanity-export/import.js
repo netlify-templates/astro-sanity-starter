@@ -2,11 +2,11 @@ const path = require('path');
 const fs = require('fs');
 const { createClient } = require('@sanity/client');
 const sanityImport = require('@sanity/import');
-require('dotenv').config();
+const Configstore = require('configstore');
 
-// Load environment variables
-const projectId = process.env.SANITY_PROJECT_ID;
-const token = process.env.SANITY_ACCESS_TOKEN;
+const config = new Configstore('sanity', {}, { globalConfigPath: true });
+const token = config.get('authToken');
+const projectId = process.argv[2];
 
 const client = createClient({
     projectId: process.env.SANITY_PROJECT_ID || projectId,
