@@ -6,6 +6,16 @@ import { allModelExtensions } from './.stackbit/models';
 export default defineStackbitConfig({
     stackbitVersion: '~0.6.0',
     nodeVersion: '18',
+    import: {
+        type: 'sanity',
+        contentFile: 'sanity-export/export.tar.gz',
+        sanityStudioPath: 'studio',
+        deployStudio: true,
+        deployGraphql: false,
+        projectIdEnvVar: 'SANITY_PROJECT_ID',
+        datasetEnvVar: 'SANITY_DATASET',
+        tokenEnvVar: 'SANITY_TOKEN'
+    },
     ssgName: 'custom',
     devCommand: 'node_modules/.bin/astro dev --port {PORT} --hostname 127.0.0.1',
     experimental: {
