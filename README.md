@@ -1,5 +1,10 @@
 # Astro Netlify Sanity Starter
 
+| Prerequisites                                                                |
+| :--------------------------------------------------------------------------- |
+| [Node.js](https://nodejs.org/) v20.13.+                                      |
+| (optional) [nvm](https://github.com/nvm-sh/nvm) for Node version management. |
+
 ## Quickstart
 
 Create local project from this repo and run:
@@ -84,3 +89,14 @@ And the Stackbit development server.
     stackbit dev
 
 This outputs your own Netlify Create URL. Open this, register or sign in, and you will be directed to Netlify Create's visual editor for your new project.
+
+## Next Steps
+
+Here are a few suggestions on what to do next if you're new to Netlify visual editor:
+
+- Learn [how Netlify visual editor works](https://docs.netlify.com/create/concepts/how-create-works/)
+- Check [Netlify visual editor reference documentation](https://visual-editor-reference.netlify.com/)
+
+## Support
+
+If you get stuck along the way, get help in our [support forums](https://answers.netlify.com/).

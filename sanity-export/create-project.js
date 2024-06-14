@@ -40,7 +40,7 @@ async function createProject({ projectName, dataset, token }) {
         url: `/projects/${project.id}/datasets/${dataset}`,
         method: 'PUT',
         body: {
-            aclMode: 'private'
+            aclMode: 'public'
         }
     });
     console.log('created a dataset');
