@@ -5,7 +5,7 @@
 | [Node.js](https://nodejs.org/) v20.13.+                                      |
 | (optional) [nvm](https://github.com/nvm-sh/nvm) for Node version management. |
 
-## Quickstart
+## Getting Started
 
 Create local project from this repo and run:
 
