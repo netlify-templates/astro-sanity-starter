@@ -4,7 +4,7 @@
 
 [Live Demo](https://astro-sanity-starter-demo.netlify.app/)
 
-Netlify Astro and Sanity minimal starter with [visual editing](https://docs.netlify.com/visual-editor/overview/.
+Netlify Astro and Sanity minimal starter with [visual editing](https://docs.netlify.com/visual-editor/overview/).
 
 | Prerequisites                                                                |
 | :--------------------------------------------------------------------------- |
