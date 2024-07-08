@@ -1,11 +1,15 @@
-const path = require('path');
-const fse = require('fs-extra');
-const { createClient } = require('@sanity/client');
-const Configstore = require('configstore');
+import path from 'path';
+import fs from 'fs-extra';
+import { fileURLToPath } from 'url';
+import { createClient } from '@sanity/client';
+import Configstore from 'configstore';
 
 const config = new Configstore('sanity', {}, { globalConfigPath: true });
 const token = process.env.SANITY_TOKEN || config.get('authToken');
 const dataset = process.env.SANITY_DATASET || 'production';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 async function createProject({ projectName, dataset, token }) {
     if (!token) {
@@ -51,14 +55,14 @@ async function createProject({ projectName, dataset, token }) {
     const configFilePath = path.join(studioDir, 'sanity.config.ts');
 
     // Replace SANITY_PROJECT_ID in sanity.cli.ts
-    let cliFileContent = await fse.readFile(cliFilePath, 'utf8');
+    let cliFileContent = await fs.readFile(cliFilePath, 'utf8');
     cliFileContent = cliFileContent.replace(/SANITY_PROJECT_ID/g, project.id);
-    await fse.writeFile(cliFilePath, cliFileContent, 'utf8');
+    await fs.writeFile(cliFilePath, cliFileContent, 'utf8');
 
     // Replace SANITY_PROJECT_ID in sanity.config.ts
-    let configFileContent = await fse.readFile(configFilePath, 'utf8');
+    let configFileContent = await fs.readFile(configFilePath, 'utf8');
     configFileContent = configFileContent.replace(/SANITY_PROJECT_ID/g, project.id);
-    await fse.writeFile(configFilePath, configFileContent, 'utf8');
+    await fs.writeFile(configFilePath, configFileContent, 'utf8');
 
     console.log('replaced sanity project ID in sanity.cli.ts and sanity.config.ts files');
 }
