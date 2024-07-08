@@ -1,8 +1,9 @@
-const path = require('path');
-const fs = require('fs');
-const { createClient } = require('@sanity/client');
-const sanityImport = require('@sanity/import');
-const Configstore = require('configstore');
+import path from 'path';
+import fs from 'fs-extra';
+import { fileURLToPath } from 'url';
+import { createClient } from '@sanity/client';
+import sanityImport from '@sanity/import';
+import Configstore from 'configstore';
 
 const config = new Configstore('sanity', {}, { globalConfigPath: true });
 const token = config.get('authToken');
@@ -16,6 +17,8 @@ const client = createClient({
     useCdn: false
 });
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const input = fs.createReadStream(path.join(__dirname, 'export.tar.gz'));
 
 sanityImport(input, {
