@@ -1,0 +1,34 @@
+{
+  "root": true,
+  "api": {
+    "projectId": "SANITY_PROJECT_ID",
+    "dataset": "production"
+  },
+  "project": {
+    "name": "astro-sanity-starter"
+  },
+  "plugins": [
+    "@sanity/base",
+    "@sanity/components",
+    "@sanity/default-layout",
+    "@sanity/default-login",
+    "@sanity/desk-tool",
+    "@sanity/color-input",
+    "markdown"
+  ],
+  "env": {
+    "development": {
+      "plugins": ["@sanity/vision"]
+    }
+  },
+  "parts": [
+    {
+      "name": "part:@sanity/base/schema",
+      "path": "./schemas/schema.js"
+    },
+    {
+      "name": "part:@sanity/desk-tool/structure",
+      "path": "./deskStructure.js"
+    }
+  ]
+}

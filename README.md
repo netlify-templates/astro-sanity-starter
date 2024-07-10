@@ -8,7 +8,7 @@ Netlify Astro and Sanity minimal starter with [visual editing](https://docs.netl
 
 | Prerequisites                                                                |
 | :--------------------------------------------------------------------------- |
-| [Node.js](https://nodejs.org/) v20.13.+                                      |
+| [Node.js](https://nodejs.org/) v18.17.+                                      |
 | (optional) [nvm](https://github.com/nvm-sh/nvm) for Node version management. |
 
 ## Getting Started

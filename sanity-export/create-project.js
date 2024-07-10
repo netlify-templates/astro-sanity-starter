@@ -49,22 +49,16 @@ async function createProject({ projectName, dataset, token }) {
     });
     console.log('created a dataset');
 
-    console.log('replacing sanity project ID in sanity.cli.ts and sanity.config.ts files...');
+    console.log('replacing sanity project ID in sanity.json files...');
     const studioDir = path.join(__dirname, '../studio');
-    const cliFilePath = path.join(studioDir, 'sanity.cli.ts');
-    const configFilePath = path.join(studioDir, 'sanity.config.ts');
+    const configFilePath = path.join(studioDir, 'sanity.json');
 
-    // Replace SANITY_PROJECT_ID in sanity.cli.ts
-    let cliFileContent = await fs.readFile(cliFilePath, 'utf8');
-    cliFileContent = cliFileContent.replace(/SANITY_PROJECT_ID/g, project.id);
-    await fs.writeFile(cliFilePath, cliFileContent, 'utf8');
-
-    // Replace SANITY_PROJECT_ID in sanity.config.ts
+    // Replace SANITY_PROJECT_ID in sanity.json
     let configFileContent = await fs.readFile(configFilePath, 'utf8');
     configFileContent = configFileContent.replace(/SANITY_PROJECT_ID/g, project.id);
     await fs.writeFile(configFilePath, configFileContent, 'utf8');
 
-    console.log('replaced sanity project ID in sanity.cli.ts and sanity.config.ts files');
+    console.log('replaced sanity project ID in sanity.json files');
 }
 
 createProject({

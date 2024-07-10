@@ -1,33 +1,32 @@
-import {defineField, defineType} from 'sanity'
-import {SquareIcon} from '@sanity/icons'
-import {SECTION_BASE_FIELDS, SECTION_BASE_GROUPS} from './sectionBase'
+import { BlockElementIcon } from '@sanity/icons'
+import { SECTION_BASE_FIELDS, SECTION_BASE_GROUPS } from './sectionBase'
 
-export default defineType({
+export default {
   name: 'ctaSection',
   title: 'Call-to-action',
   type: 'object',
-  icon: SquareIcon,
+  icon: BlockElementIcon,
   groups: SECTION_BASE_GROUPS,
   fields: [
-    defineField({
+    {
       name: 'heading',
       title: 'Heading',
       type: 'string',
       group: 'content',
-    }),
-    defineField({
+    },
+    {
       name: 'body',
       title: 'Body',
       type: 'markdown',
       group: 'content',
-    }),
-    defineField({
+    },
+    {
       name: 'cta',
       title: 'Call-to-action',
       type: 'array',
-      of: [{type: 'actionButton'}, {type: 'actionLink'}],
+      of: [{ type: 'actionButton' }, { type: 'actionLink' }],
       group: 'content',
-    }),
+    },
     ...SECTION_BASE_FIELDS,
   ],
   preview: {
@@ -42,4 +41,4 @@ export default defineType({
       }
     },
   },
-})
+}
