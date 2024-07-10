@@ -32,12 +32,12 @@ export default defineStackbitConfig({
     },
     contentSources: [
         new SanityContentSource({
-            rootPath: __dirname,
-            studioPath: path.join(__dirname, 'studio'),
-            studioUrl: '',
             projectId: process.env.SANITY_PROJECT_ID!,
+            dataset: process.env.SANITY_DATASET || 'production',
             token: process.env.SANITY_TOKEN!,
-            dataset: process.env.SANITY_DATASET || 'production'
+            rootPath: __dirname,
+            studioUrl: '',
+            studioPath: path.join(__dirname, 'studio')
         })
     ],
     modelExtensions: allModelExtensions

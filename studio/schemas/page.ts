@@ -1,7 +1,6 @@
-import {defineField, defineType} from 'sanity'
-import {ComposeIcon} from '@sanity/icons'
+import { ComposeIcon } from '@sanity/icons'
 
-export default defineType({
+export default {
   name: 'page',
   title: 'Page',
   description: 'A page with dynamic list of sections',
@@ -19,14 +18,14 @@ export default defineType({
     },
   ],
   fields: [
-    defineField({
+    {
       name: 'title',
       title: 'Title',
       type: 'string',
       validation: (Rule) => Rule.required(),
       group: 'content',
-    }),
-    defineField({
+    },
+    {
       name: 'slug',
       title: 'Slug',
       description: 'Should not contain a leading slash and must contain a trailing slash.',
@@ -37,30 +36,30 @@ export default defineType({
       },
       validation: (Rule) => Rule.required(),
       group: 'content',
-    }),
-    defineField({
+    },
+    {
       name: 'sections',
       title: 'Sections',
       description: 'The list containing the sections of a page',
       type: 'array',
       of: [
-        {type: 'cardsSection'},
-        {type: 'ctaSection'},
-        {type: 'heroSection'},
-        {type: 'logosSection'},
-        {type: 'testimonialsSection'},
+        { type: 'cardsSection' },
+        { type: 'ctaSection' },
+        { type: 'heroSection' },
+        { type: 'logosSection' },
+        { type: 'testimonialsSection' },
       ],
       group: 'content',
-    }),
-    defineField({
+    },
+    {
       name: 'metaTitle',
       title: 'Title',
       description: 'A page title for SEO and social sharing. Ideally between 15 and 70 characters.',
       type: 'string',
       validation: (Rule) => Rule.max(70).warning('Consider shortening the title'),
       group: 'seo',
-    }),
-    defineField({
+    },
+    {
       name: 'addTitleSuffix',
       title: 'Add title suffix',
       description:
@@ -68,8 +67,8 @@ export default defineType({
       type: 'boolean',
       initialValue: true,
       group: 'seo',
-    }),
-    defineField({
+    },
+    {
       name: 'metaDescription',
       title: 'Description',
       description:
@@ -78,25 +77,25 @@ export default defineType({
       rows: 3,
       validation: (Rule) => Rule.max(160).warning('Consider shortening the description'),
       group: 'seo',
-    }),
-    defineField({
+    },
+    {
       name: 'socialImage',
       title: 'Image',
       description: 'Open graph image used in social sharing.',
       type: 'image',
       group: 'seo',
-    }),
+    },
   ],
   preview: {
     select: {
       title: 'title',
       subtitle: 'slug.current',
     },
-    prepare({title, subtitle}) {
+    prepare({ title, subtitle }) {
       return {
         title: title,
         subtitle: subtitle ? subtitle : '',
       }
     },
   },
-})
+}

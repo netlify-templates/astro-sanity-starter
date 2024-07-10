@@ -1,7 +1,6 @@
-import {defineField, defineType} from 'sanity'
-import {HomeIcon} from '@sanity/icons'
+import { HomeIcon } from '@sanity/icons'
 
-export default defineType({
+export default {
   name: 'company',
   title: 'Company',
   type: 'document',
@@ -14,19 +13,19 @@ export default defineType({
     },
   ],
   fields: [
-    defineField({
+    {
       name: 'name',
       title: 'Name',
       type: 'string',
       validation: (Rule) => Rule.required(),
       group: 'content',
-    }),
-    defineField({
+    },
+    {
       name: 'logo',
       title: 'Logo',
       type: 'customImage',
       group: 'content',
-    }),
+    },
   ],
   preview: {
     select: {
@@ -40,4 +39,4 @@ export default defineType({
       }
     },
   },
-})
+}
