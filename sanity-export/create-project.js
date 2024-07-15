@@ -55,7 +55,7 @@ async function createProject({ projectName, dataset, token }) {
 
     // Replace SANITY_PROJECT_ID in sanity.json
     let configFileContent = await fs.readFile(configFilePath, 'utf8');
-    configFileContent = configFileContent.replace(/SANITY_PROJECT_ID/g, project.id);
+    configFileContent = configFileContent.replace(/__SANITY_PROJECT_ID__/g, project.id);
     await fs.writeFile(configFilePath, configFileContent, 'utf8');
 
     console.log('replaced sanity project ID in sanity.json files');
