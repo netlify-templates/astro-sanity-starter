@@ -1,10 +1,11 @@
-import { BlockElementIcon } from '@sanity/icons'
+import {defineField, defineType} from 'sanity'
+import {SquareIcon} from '@sanity/icons'
 
-export default {
+export default defineType({
   name: 'footer',
   title: 'Footer',
   type: 'object',
-  icon: BlockElementIcon,
+  icon: SquareIcon,
   groups: [
     {
       name: 'content',
@@ -13,12 +14,12 @@ export default {
     },
   ],
   fields: [
-    {
+    defineField({
       name: 'text',
       title: 'Text',
       type: 'string',
       group: 'content',
-    },
+    }),
   ],
   preview: {
     select: {
@@ -30,4 +31,4 @@ export default {
       }
     },
   },
-}
+})

@@ -1,10 +1,9 @@
-import { InlineElementIcon } from '@sanity/icons'
+import {defineField, defineType} from 'sanity'
 
-export default {
+export default defineType({
   name: 'card',
   title: 'Card',
   type: 'object',
-  icon: InlineElementIcon,
   groups: [
     {
       name: 'content',
@@ -17,72 +16,72 @@ export default {
     },
   ],
   fields: [
-    {
+    defineField({
       name: 'badge',
       title: 'Badge',
       type: 'badge',
       group: 'content',
-    },
-    {
+    }),
+    defineField({
       name: 'heading',
       title: 'Heading',
       type: 'string',
       group: 'content',
-    },
-    {
+    }),
+    defineField({
       name: 'body',
       title: 'Body',
       type: 'markdown',
       group: 'content',
-    },
-    {
+    }),
+    defineField({
       name: 'cta',
       title: 'Call-to-action',
       type: 'array',
-      of: [{ type: 'actionButton' }, { type: 'actionLink' }],
+      of: [{type: 'actionButton'}, {type: 'actionLink'}],
       group: 'content',
-    },
-    {
+    }),
+    defineField({
       name: 'image',
       title: 'Image',
       type: 'customImage',
       group: 'content',
-    },
-    {
+    }),
+    defineField({
       name: 'theme',
       title: 'Theme',
       description: 'The color theme of the card.',
       type: 'string',
       options: {
         list: [
-          { title: 'Light', value: 'light' },
-          { title: 'Dark', value: 'dark' },
-          { title: 'Transparent', value: 'transparent' },
+          {title: 'Light', value: 'light'},
+          {title: 'Dark', value: 'dark'},
+          {title: 'Transparent', value: 'transparent'},
         ],
       },
       group: 'styles',
-    },
-    {
+    }),
+    defineField({
       name: 'textAlign',
       title: 'Text Align',
       description: 'The horizontal alignment of the card content.',
       type: 'string',
       options: {
         list: [
-          { title: 'Left', value: 'left' },
-          { title: 'Center', value: 'center' },
+          {title: 'Left', value: 'left'},
+          {title: 'Center', value: 'center'},
         ],
       },
       group: 'styles',
-    },
-    {
+    }),
+    defineField({
       name: 'hasBorder',
       title: 'Border',
       description: 'If enabled, the border is added to the card',
       type: 'boolean',
       initialValue: true,
       group: 'styles',
-    },
+    }),
   ],
   preview: {
     select: {
@@ -95,4 +94,4 @@ export default {
       }
     },
   },
-}
+})
