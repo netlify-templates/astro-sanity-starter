@@ -1,7 +1,7 @@
 {
   "root": true,
   "api": {
-    "projectId": "SANITY_PROJECT_ID",
+    "projectId": "__SANITY_PROJECT_ID__",
     "dataset": "production"
   },
   "project": {
