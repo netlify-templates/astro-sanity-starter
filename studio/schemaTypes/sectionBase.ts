@@ -1,3 +1,5 @@
+import {defineField} from 'sanity'
+
 export const SECTION_BASE_GROUPS = [
   {
     name: 'content',
@@ -11,27 +13,27 @@ export const SECTION_BASE_GROUPS = [
 ]
 
 export const SECTION_BASE_FIELDS = [
-  {
+  defineField({
     name: 'theme',
     title: 'Theme',
     description: 'The color theme of the section.',
     type: 'string',
     options: {
       list: [
-        { title: 'Light', value: 'light' },
-        { title: 'Dark', value: 'dark' },
+        {title: 'Light', value: 'light'},
+        {title: 'Dark', value: 'dark'},
       ],
     },
     initialValue: 'light',
     group: 'styles',
-  },
-  {
+  }),
+  defineField({
     name: 'backgroundImage',
     title: 'Background Image',
     type: 'backgroundImage',
     group: 'styles',
-  },
-  {
+  }),
+  defineField({
     name: 'width',
     title: 'Width',
     description:
@@ -39,11 +41,11 @@ export const SECTION_BASE_FIELDS = [
     type: 'string',
     options: {
       list: [
-        { title: 'Full', value: 'full' },
-        { title: 'Inset', value: 'inset' },
+        {title: 'Full', value: 'full'},
+        {title: 'Inset', value: 'inset'},
       ],
     },
     initialValue: 'full',
     group: 'styles',
-  },
+  }),
 ]
