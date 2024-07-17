@@ -59,22 +59,16 @@ Sanity Studio code exists for this project in the `studio` directory. First, ins
     cd studio
     npm install
 
-Then run the studio locally.
+Then create a `.env` file in the `studio` directory with the following environment variables and set their values:
 
-    npm start
-
-If you want to see the content, you can open your browser and navigate to localhost:3333.
-
-### Run Sanity Studio
-
-Sanity Studio code exists for this project in the `studio` directory. First, install the dependencies in this directory.
-
-    cd studio
-    npm install
+```plain
+SANITY_STUDIO_PROJECT_ID="..."
+SANITY_STUDIO_DATASET="..."
+```
 
 Then run the studio locally.
 
-    npm start
+    sanity dev
 
 If you want to see the content, you can open your browser and navigate to localhost:3333.
 
