@@ -16,7 +16,7 @@ Netlify Astro and Sanity minimal starter with [visual editing](https://docs.netl
 Create local project from this repo and run:
 
 ```txt
-npm run install
+npm install
 ```
 
 ### Sign Into Sanity
