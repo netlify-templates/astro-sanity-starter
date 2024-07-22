@@ -26,7 +26,7 @@
         "@sanity/export": "^3.38.1",
         "@sanity/import": "^3.37.4",
         "@stackbit/cms-sanity": "^0.2.56",
-        "@stackbit/types": "^1.0.1",
+        "@stackbit/types": "^2.0.0",
         "configstore": "5.0.1",
         "daisyui": "^4.10.2"
     }
