@@ -23,8 +23,10 @@ npm install
 
 If you are not already signed into Sanity via the CLI, install the CLI package and then run the login command.
 
-    npm install -g @sanity/cli
-    sanity login
+```txt
+npm install -g @sanity/cli
+sanity login
+```
 
 This will open a browser and walk you through the authentication process.
 
@@ -32,13 +34,17 @@ This will open a browser and walk you through the authentication process.
 
 Once authenticated, you'll be able to create a Sanity project and import content.
 
-    npm run create-project
+```txt
+npm run create-project
+```
 
 _Note: You may want to sign into Sanity in the browser and rename your project._
 
 Once the project exists and you've set the environment variables, you can import the content.
 
-    npm run import {projectId}
+```txt
+npm run import {projectId}
+```
 
 Replace `{projectId}` with the project ID output from the previous command.
 
@@ -46,7 +52,7 @@ Replace `{projectId}` with the project ID output from the previous command.
 
 Sign into Sanity to create an editor token, navigate to the following address (replace the `SANITY_PROJECT_ID` with your project ID) `https://www.sanity.io/manage/personal/project/SANITY_PROJECT_ID/api#tokens`. Then create `.env` file in you repo, copy & paste the following environment variables into the file and set their values.
 
-```plain
+```txt
 SANITY_PROJECT_ID="..."
 SANITY_DATASET="..."
 SANITY_TOKEN="..."
@@ -56,19 +62,23 @@ SANITY_TOKEN="..."
 
 Sanity Studio code exists for this project in the `studio` directory. First, install the dependencies in this directory.
 
-    cd studio
-    npm install
+```txt
+cd studio
+npm install
+```
 
 Then create a `.env` file in the `studio` directory with the following environment variables and set their values:
 
-```plain
+```txt
 SANITY_STUDIO_PROJECT_ID="..."
 SANITY_STUDIO_DATASET="..."
 ```
 
 Then run the studio locally.
 
-    sanity dev
+```txt
+sanity dev
+```
 
 If you want to see the content, you can open your browser and navigate to localhost:3333.
 
@@ -80,22 +90,26 @@ Then you can run the Astro.js development server in root directory:
 npm run dev
 ```
 
-Install Netlify Create CLI:
+Install Netlify Visual Editor CLI:
 
-    npm install -g @stackbit/cli
+```txt
+npm install -g @stackbit/cli
+```
 
 And the Stackbit development server.
 
-    stackbit dev
+```txt
+stackbit dev
+```
 
-This outputs your own Netlify Create URL. Open this, register or sign in, and you will be directed to Netlify Create's visual editor for your new project.
+This outputs your own Netlify Visual Editor URL. Open this, register or sign in, and you will be directed to Netlify Visual Editor for your new project.
 
 ## Next Steps
 
-Here are a few suggestions on what to do next if you're new to Netlify visual editor:
+Here are a few suggestions on what to do next if you're new to Netlify Visual Editor:
 
-- Learn [how Netlify visual editor works](https://docs.netlify.com/create/concepts/how-create-works/)
-- Check [Netlify visual editor reference documentation](https://visual-editor-reference.netlify.com/)
+- Learn [how Netlify Visual Editor works](https://docs.netlify.com/visual-editor/concepts/how-visual-editor-works/)
+- Check [Netlify Visual Editor reference documentation](https://visual-editor-reference.netlify.com/)
 
 ## Support
 
