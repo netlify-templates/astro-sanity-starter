@@ -74,5 +74,10 @@ function formatCanonicalURL(url: string | URL) {
         <Header {...configData.header} data-sb-field-path={`${configData._id}:header`} />
         <slot />
         <Footer {...configData.footer} data-sb-field-path={`${configData._id}:footer`} />
+        <script is:inline>
+            window.addEventListener('stackbitObjectsChanged', () => {
+                window.location.reload();
+            });
+        </script>
     </body>
 </html>

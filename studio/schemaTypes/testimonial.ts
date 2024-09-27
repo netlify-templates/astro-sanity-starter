@@ -56,12 +56,13 @@ export default defineType({
   ],
   preview: {
     select: {
-      heading: 'heading',
-      body: 'body',
+      quote: 'quote',
+      author: 'author.name',
     },
     prepare(selection) {
       return {
-        title: `${selection.heading || selection.body || ''}`,
+        title: selection.quote,
+        subtitle: selection.author
       }
     },
   },
