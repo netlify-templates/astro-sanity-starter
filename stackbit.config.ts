@@ -4,7 +4,7 @@ import { SanityContentSource } from '@stackbit/cms-sanity';
 import { allModelExtensions } from './.stackbit/models';
 
 export default defineStackbitConfig({
-    stackbitVersion: '~0.6.0',
+    stackbitVersion: '~0.7.0',
     nodeVersion: '18',
     import: {
         type: 'sanity',
