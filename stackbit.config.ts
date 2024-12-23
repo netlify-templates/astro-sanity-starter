@@ -5,7 +5,7 @@ import { allModelExtensions } from './.stackbit/models';
 
 export default defineStackbitConfig({
     stackbitVersion: '~0.7.0',
-    nodeVersion: '18',
+    nodeVersion: '20',
     import: {
         type: 'sanity',
         contentFile: 'sanity-export/export.tar.gz',
