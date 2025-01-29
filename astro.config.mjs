@@ -17,7 +17,7 @@ export default defineConfig({
     vite: {
         server: {
             hmr: { path: '/vite-hmr/' },
-            allowedHosts: ['devserver-main--astro-sanity-starter-demo.netlify.app']
+            allowedHosts: ['devserver-tb-update--astro-sanity-starter-demo.netlify.app']
         }
     },
     server: {
