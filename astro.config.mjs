@@ -16,7 +16,8 @@ export default defineConfig({
     ],
     vite: {
         server: {
-            hmr: { path: '/vite-hmr/' }
+            hmr: { path: '/vite-hmr/' },
+            allowedHosts: ['.netlify.app']
         }
     },
     server: {
