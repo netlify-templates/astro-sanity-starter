@@ -39,14 +39,14 @@ const { title, logo, navLinks, 'data-sb-field-path': fieldPath } = Astro.props;
                     </ul>
                     <div class="relative lg:hidden">
                         <button
-                            class="inline-flex justify-center items-center w-10 h-10 relative z-[2] nav-toggle"
+                            class="inline-flex justify-center items-center w-10 h-10 relative z-2 nav-toggle"
                             aria-label="Open Menu"
                             aria-expanded="false"
                             aria-controls="nav-panel"
                         >
                             <span class="nav-toggle-icon" />
                         </button>
-                        <div id="nav-panel" class="nav-panel absolute rounded-box -top-2 -right-2 z-[1] shadow-xl bg-base-100 border border-base-200/70">
+                        <div id="nav-panel" class="nav-panel absolute rounded-box -top-2 -right-2 z-1 shadow-xl bg-base-100 border border-base-200/70">
                             <ul class="flex flex-col px-4 pb-6 pt-14" data-sb-field-path=".navLinks">
                                 {navLinks.map((item, index) => (
                                     <li>
@@ -69,6 +69,7 @@ const { title, logo, navLinks, 'data-sb-field-path': fieldPath } = Astro.props;
 </nav>
 
 <style>
+    @reference "../styles/globals.css";
     .nav-panel {
         @apply max-w-72 opacity-0 scale-90 origin-top-right invisible;
         width: calc(100vw - 1rem);
