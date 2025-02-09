@@ -12,7 +12,7 @@
         "export": "node ./sanity-export/export.js"
     },
     "dependencies": {
-        "@sanity/astro": "^3.1.6",
+        "@sanity/astro": "^3.1.11",
         "@sanity/client": "^6.22.0",
         "@sanity/validation": "^3.14.4",
         "@tailwindcss/vite": "^4.0.0",
