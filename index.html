@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothing Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            background-color: #444;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+        nav a:hover {
+            color: #e67e22;
+        }
+        .product {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 20px;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .product:hover {
+            transform: scale(1.05);
+        }
+        .product img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .product h2 {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        .product p {
+            font-size: 16px;
+            color: #555;
+        }
+        .product .price {
+            font-size: 20px;
+            color: #e67e22;
+            font-weight: bold;
+        }
+        .product button {
+            background-color: #e67e22;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .product button:hover {
+            background-color: #d35400;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Clothing Store</h1>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#products">Products</a>
+        <a href="#contact">Contact Us</a>
+    </nav>
+
+    <div id="home" class="product">
+        <img src="https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Men's T-Shirt">
+        <h2>Men's T-Shirt</h2>
+        <p>Comfortable and stylish cotton men's T-shirt.</p>
+        <p class="price">Price: $15</p>
+        <button onclick="showDetails('Men\'s T-Shirt')">Buy Now</button>
+    </div>
+
+    <div class="product">
+        <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Jeans">
+        <h2>Jeans</h2>
+        <p>High-quality jeans suitable for all occasions.</p>
+        <p class="price">Price: $30</p>
+        <button onclick="showDetails('Jeans')">Buy Now</button>
+    </div>
+
+    <div class="product">
+        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Jacket">
+        <h2>Jacket</h2>
+        <p>Warm and trendy winter jacket.</p>
+        <p class="price">Price: $50</p>
+        <button onclick="showDetails('Jacket')">Buy Now</button>
+    </div>
+
+    <div class="product">
+        <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Sneakers">
+        <h2>Sneakers</h2>
+        <p>Comfortable and stylish sneakers for everyday wear.</p>
+        <p class="price">Price: $40</p>
+        <button onclick="showDetails('Sneakers')">Buy Now</button>
+    </div>
+
+    <div class="product">
+        <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Hoodie">
+        <h2>Hoodie</h2>
+        <p>Soft and cozy hoodie for a casual look.</p>
+        <p class="price">Price: $25</p>
+        <button onclick="showDetails('Hoodie')">Buy Now</button>
+    </div>
+
+    <footer>
+        <p>Clothing Store - All Rights Reserved &copy; 2025</p>
+    </footer>
+
+    <script>
+        function showDetails(productName) {
+            alert(`You selected: ${productName}\nYou will be redirected to the payment page.`);
+            // هنا ممكن تضيف رابط لصفحة الدفع أو تفاصيل المنتج
+        }
+    </script>
+
+</body>
+</html>
