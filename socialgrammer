@@ -1,0 +1,57 @@
+import React, { useState } from "react";
+
+const GOOGLE_API_KEY = "YOUR_GOOGLE_API_KEY";
+const SEARCH_ENGINE_ID = "YOUR_SEARCH_ENGINE_ID";
+
+const App = () => {
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const fetchResults = async () => {
+    if (!query) return;
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `https://www.googleapis.com/customsearch/v1?q=${query}&key=${GOOGLE_API_KEY}&cx=${SEARCH_ENGINE_ID}`
+      );
+      const data = await response.json();
+      setResults(data.items || []);
+    } catch (error) {
+      console.error("Error fetching search results", error);
+    }
+    setLoading(false);
+  };
+
+  return (
+    <div className="p-4 max-w-2xl mx-auto">
+      <h1 className="text-xl font-bold mb-4">Google Search App</h1>
+      <input
+        type="text"
+        placeholder="Search Google..."
+        className="w-full p-2 border rounded"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+      <button
+        className="mt-2 p-2 bg-blue-500 text-white rounded"
+        onClick={fetchResults}
+      >
+        Search
+      </button>
+      {loading && <p>Loading...</p>}
+      <ul className="mt-4">
+        {results.map((result, index) => (
+          <li key={index} className="mb-2">
+            <a href={result.link} target="_blank" rel="noopener noreferrer" className="text-blue-600">
+              {result.title}
+            </a>
+            <p className="text-gray-600">{result.snippet}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default App;
