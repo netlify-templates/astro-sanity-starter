@@ -1,116 +1,62 @@
-# Astro Netlify Sanity Starter
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Synovax Innovation</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+  <header class="bg-blue-800 text-white p-6 shadow-md">
+    <h1 class="text-4xl font-bold text-center">Synovax Innovation</h1>
+    <p class="text-center text-lg">Transparencia y calidad en cada producto</p>
+  </header>
 
-![Astro Netlify Sanity Starter](https://assets.stackbit.com/docs/astro-sanity-starter-thumb.jpg)
+  <main class="max-w-5xl mx-auto p-6 space-y-10">
 
-[Live Demo](https://astro-sanity-starter-demo.netlify.app/)
+    <section>
+      <h2 class="text-2xl font-semibold text-blue-800">¿Quiénes somos?</h2>
+      <p class="mt-2 text-justify">En <strong>Synovax</strong>, somos una tienda en línea comprometida con ofrecer productos de excelente calidad importados desde Estados Unidos. Trabajamos con artículos nuevos, semi-nuevos y reacondicionados, muchos de los cuales presentan detalles mínimos como empaques dañados, lo que nos permite ofrecer precios altamente competitivos en el mercado mexicano. Nos enorgullece ser completamente transparentes con nuestros clientes: todo lo que vendemos es legal y pasa por filtros de revisión para asegurar su funcionamiento.</p>
+    </section>
 
-Netlify Astro and Sanity minimal starter with [visual editing](https://docs.netlify.com/visual-editor/overview/).
+    <section>
+      <h2 class="text-2xl font-semibold text-blue-800">¿Qué ofrecemos?</h2>
+      <ul class="list-disc pl-5 mt-2 space-y-2">
+        <li>Productos electrónicos, artículos del hogar, herramientas y más, importados de EE.UU.</li>
+        <li>Precios accesibles gracias a condiciones especiales como empaque dañado o reacondicionamiento.</li>
+        <li>Ventas al mayoreo para emprendedores o revendedores.</li>
+        <li>Oportunidad de convertirte en proveedor asociado para iniciar tu propio negocio.</li>
+        <li>Atención personalizada y disponibilidad 24/7 para resolver tus dudas.</li>
+      </ul>
+    </section>
 
-| Prerequisites                                                                |
-| :--------------------------------------------------------------------------- |
-| [Node.js](https://nodejs.org/) v20.+                                         |
-| (optional) [nvm](https://github.com/nvm-sh/nvm) for Node version management. |
+    <section>
+      <h2 class="text-2xl font-semibold text-blue-800">Políticas y condiciones</h2>
+      <ul class="list-disc pl-5 mt-2 space-y-2">
+        <li>No todos los productos son originales, pero sí están claramente identificados y revisados.</li>
+        <li>No emitimos facturas ni garantizamos los productos.</li>
+        <li>Todos los productos son vendidos en el estado en el que se encuentran, con una descripción honesta.</li>
+        <li>Buscamos siempre actuar con honestidad y claridad, para que tengas la mejor experiencia de compra.</li>
+      </ul>
+    </section>
 
-## Getting Started
+    <section>
+      <h2 class="text-2xl font-semibold text-blue-800">Contáctanos</h2>
+      <p class="mt-2">¿Tienes preguntas o quieres comenzar a comprar o vender con nosotros?</p>
+      <ul class="mt-4 space-y-1">
+        <li><strong>Teléfono / WhatsApp:</strong> <a href="tel:+529619962685" class="text-blue-600 underline">961 996 2685</a></li>
+        <li><strong>Correo electrónico:</strong> <a href="mailto:vulchisdiego@gmail.com" class="text-blue-600 underline">vulchisdiego@gmail.com</a></li>
+        <li><strong>Facebook:</strong> <a href="https://facebook.com/SYNOVAXINNOVATION" class="text-blue-600 underline">SYNOVAX INNOVATION</a></li>
+        <li><strong>Instagram:</strong> <a href="https://instagram.com/SYNOVAXINNOVATION" class="text-blue-600 underline">@SYNOVAXINNOVATION</a></li>
+        <li><strong>Horario:</strong> Todos los días, las 24 horas.</li>
+      </ul>
+    </section>
 
-Create local project from this repo and run:
+  </main>
 
-```txt
-npm install
-```
+  <footer class="bg-blue-800 text-white p-4 text-center">
+    <p>&copy; 2025 Synovax Innovation. Todos los derechos reservados.</p>
+  </footer>
+</body>
+</html>
 
-### Sign Into Sanity
-
-If you are not already signed into Sanity via the CLI, install the CLI package and then run the login command.
-
-```txt
-npm install -g @sanity/cli
-sanity login
-```
-
-This will open a browser and walk you through the authentication process.
-
-### Import Content
-
-Once authenticated, you'll be able to create a Sanity project and import content.
-
-```txt
-npm run create-project
-```
-
-_Note: You may want to sign into Sanity in the browser and rename your project._
-
-Once the project exists and you've set the environment variables, you can import the content.
-
-```txt
-npm run import {projectId}
-```
-
-Replace `{projectId}` with the project ID output from the previous command.
-
-### Store Sanity Values
-
-Sign into Sanity to create an editor token, navigate to the following address (replace the `SANITY_PROJECT_ID` with your project ID) `https://www.sanity.io/manage/personal/project/SANITY_PROJECT_ID/api#tokens`. Then create `.env` file in you repo, copy & paste the following environment variables into the file and set their values.
-
-```txt
-SANITY_PROJECT_ID="..."
-SANITY_DATASET="..."
-SANITY_TOKEN="..."
-```
-
-### Run Sanity Studio
-
-Sanity Studio code exists for this project in the `studio` directory. First, install the dependencies in this directory.
-
-```txt
-cd studio
-npm install
-```
-
-Then create a `.env` file in the `studio` directory with the following environment variables and set their values:
-
-```txt
-SANITY_STUDIO_PROJECT_ID="..."
-SANITY_STUDIO_DATASET="..."
-```
-
-Then run the studio locally.
-
-```txt
-sanity dev
-```
-
-If you want to see the content, you can open your browser and navigate to localhost:3333.
-
-### Start Development Server
-
-Then you can run the Astro.js development server in root directory:
-
-```txt
-npm run dev
-```
-
-Install Netlify Visual Editor CLI:
-
-```txt
-npm install -g @stackbit/cli
-```
-
-And the Stackbit development server.
-
-```txt
-stackbit dev
-```
-
-This outputs your own Netlify Visual Editor URL. Open this, register or sign in, and you will be directed to Netlify Visual Editor for your new project.
-
-## Next Steps
-
-Here are a few suggestions on what to do next if you're new to Netlify Visual Editor:
-
-- Learn [how Netlify Visual Editor works](https://docs.netlify.com/visual-editor/concepts/how-visual-editor-works/)
-- Check [Netlify Visual Editor reference documentation](https://visual-editor-reference.netlify.com/)
-
-## Support
-
-If you get stuck along the way, get help in our [support forums](https://answers.netlify.com/).
