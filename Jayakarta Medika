@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Jayakarta Medika — Layanan homecare dan kunjungan medis profesional di Jakarta Utara. Dokter & perawat datang ke rumah Anda.">
+  <meta name="author" content="Jayakarta Medika">
+  <title>Jayakarta Medika | Homecare Jakarta</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="icon" href="data:;base64,iVBORw0KGgo="> <!-- Placeholder favicon -->
+  <style>
+    :root{
+      --primary: #0d6efd;
+      --wa: #25D366;
+      --muted-bg: #f9fbfc;
+      --hero-bg: #f1faff;
+      --radius: 12px;
+      --card-shadow: 0 6px 18px rgba(13,110,253,0.06);
+    }
+    html,body{height:100%;}
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial;
+      color:#222;
+      -webkit-font-smoothing:antialiased;
+    }
+    /* NAV */
+    .navbar-brand { font-weight:700; }
+    .nav-link{ color: rgba(0,0,0,.65) !important; }
+
+    /* HERO */
+    .hero{
+      background:var(--hero-bg);
+      padding:80px 0;
+      border-bottom-left-radius: var(--radius);
+      border-bottom-right-radius: var(--radius);
+    }
+    .hero .lead{font-size:1.125rem}
+
+    /* CTA */
+    .btn-wa{ background-color:var(--wa); color:white; border:none }
+    .btn-wa:hover{ filter:brightness(.94); }
+
+    /* SERVICES */
+    .services{ padding:60px 0 }
+    .service-icon{ font-size:42px; color:var(--primary); display:block; margin-bottom:12px }
+    .card.service{ border:none; border-radius:14px; box-shadow:var(--card-shadow); }
+
+    /* CONTACT */
+    .contact{ background:var(--muted-bg); padding:56px 0 }
+    .map-responsive{ position:relative; overflow:hidden; padding-top:56.25%; border-radius:10px; box-shadow:var(--card-shadow) }
+    .map-responsive iframe{ position:absolute; top:0; left:0; width:100%; height:100%; border:0 }
+
+    footer{ padding:28px 0; font-size:.95rem }
+
+    /* Floating WA */
+    .fab-wa{ position:fixed; right:18px; bottom:18px; z-index:1100; border-radius:999px; box-shadow:0 6px 22px rgba(0,0,0,.12); }
+
+    /* Responsive tweaks */
+    @media (max-width:576px){ .hero{ padding:48px 0 } }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="#">Jayakarta Medika</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navmenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#services">Layanan</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Kontak</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://wa.me/6281280415692" target="_blank">WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container text-center">
+    <h1 class="mb-3">Rawat dengan Hati, Layani dengan Profesional</h1>
+    <p class="lead mb-4">Layanan homecare: kunjungan dokter, perawat, perawatan luka, infus, dan pendampingan pasca-rumah sakit—langsung ke rumah Anda di Jakarta Utara.</p>
+    <a href="https://wa.me/6281280415692?text=Halo%20Jayakarta%20Medika%2C%20saya%20ingin%20informasi%20lebih%20lanjut" target="_blank" class="btn btn-wa btn-lg me-2">
+      <i class="bi bi-whatsapp"></i> Hubungi via WhatsApp
+    </a>
+    <a href="#contact" class="btn btn-outline-primary btn-lg">Lihat Kontak</a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="services">
+  <div class="container">
+    <h2 class="text-center mb-4">Layanan Kami</h2>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="card service h-100 p-4 text-center">
+          <i class="bi bi-person-badge service-icon" aria-hidden="true"></i>
+          <h5 class="card-title">Home Visit Dokter</h5>
+          <p class="mb-0">👨‍⚕️ dr Benedictus Victor Smellen — Pemeriksaan umum, resep, dan rencana perawatan.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card service h-100 p-4 text-center">
+          <i class="bi bi-heart-pulse service-icon" aria-hidden="true"></i>
+          <h5 class="card-title">Home Visit Perawat</h5>
+          <p class="mb-0">💓 Nur Aziz Wahabali — Perawatan luka, pemasangan infus, injeksi, dan perawatan pasca-operasi.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-3 mt-4">
+      <div class="col-md-4">
+        <div class="card p-3 text-center service">
+          <i class="bi bi-activity service-icon"></i>
+          <h6 class="mb-0">Perawatan Luka</h6>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-3 text-center service">
+          <i class="bi bi-droplet service-icon"></i>
+          <h6 class="mb-0">Pemasangan Infus</h6>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-3 text-center service">
+          <i class="bi bi-briefcase-medical service-icon"></i>
+          <h6 class="mb-0">Pendampingan Pasca RS</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="container">
+    <h2 class="text-center mb-4">Kontak Kami</h2>
+    <div class="row g-4 justify-content-center">
+      <div class="col-lg-5">
+        <div class="card p-4 shadow-sm">
+          <h5>Alamat</h5>
+          <p class="mb-2">📍 Jl. Warakas Raya No.52 Rt06/Rw07, Tanjung Priok, Jakarta Utara, Kodepos 14330</p>
+          <p class="mb-2">📞 <a href="tel:081280415692">0812-8041-5692</a></p>
+          <p class="mb-3">✉️ <a href="mailto:info@jayakartamedika.com">info@jayakartamedika.com</a></p>
+
+          <hr>
+          <h6>Hubungi Sekarang</h6>
+          <a href="https://wa.me/6281280415692?text=Halo%20Jayakarta%20Medika%2C%20saya%20ingin%20informasi%20lebih%20lanjut" target="_blank" class="btn btn-wa w-100 mb-2"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+
+          <!-- Simple contact form that opens user's email client -->
+          <form class="mt-3" action="mailto:info@jayakartamedika.com" method="post" enctype="text/plain">
+            <div class="mb-2">
+              <label class="form-label small">Nama</label>
+              <input class="form-control" name="Nama" placeholder="Nama Anda">
+            </div>
+            <div class="mb-2">
+              <label class="form-label small">Email / Telepon</label>
+              <input class="form-control" name="Kontak" placeholder="Email atau Telepon">
+            </div>
+            <div class="mb-2">
+              <label class="form-label small">Pesan</label>
+              <textarea class="form-control" name="Pesan" rows="3" placeholder="Tulis pesan singkat..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Kirim via Email</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="map-responsive">
+          <!-- Google Maps embed (search-based) -->
+          <iframe src="https://www.google.com/maps?q=Jl.+Warakas+Raya+No.52+Tanjung+Priok+Jakarta+Utara&output=embed" aria-hidden="false" tabindex="0"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-white">
+  <div class="container text-center">
+    <p class="mb-0">&copy; 2025 Jayakarta Medika. All rights reserved.</p>
+    <small class="text-muted">Dikelola oleh Jayakarta Medika — Layanan homecare Jakarta Utara</small>
+  </div>
+</footer>
+
+<!-- FLOATING WA BUTTON -->
+<a class="btn btn-wa fab-wa p-3" href="https://wa.me/6281280415692" target="_blank" aria-label="Hubungi via WhatsApp">
+  <i class="bi bi-whatsapp fs-4"></i>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
