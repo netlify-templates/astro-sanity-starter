@@ -1,0 +1,27 @@
+backend:
+  name: github
+  repo: your-username/your-repo-name   # 替换成你的 GitHub 仓库
+  branch: main                         # 主分支名称，通常是 main
+
+media_folder: "static/images/uploads"  # 上传图片的目录
+public_folder: "/images/uploads"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    folder: "content/pages"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "posts"
+    label: "Blog Posts"
+    folder: "content/posts"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
