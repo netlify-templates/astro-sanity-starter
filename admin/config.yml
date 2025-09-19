@@ -1,15 +1,15 @@
 backend:
   name: github
-  repo: your-username/your-repo-name   # 替换成你的 GitHub 仓库
-  branch: main                         # 主分支名称，通常是 main
+  repo: angelakcc-cmyk/astro-sanity-starter  # 替换成你的 GitHub 仓库
+  branch: main                                # 主分支，一般是 main
 
-media_folder: "static/images/uploads"  # 上传图片的目录
+media_folder: "static/images/uploads"        # 上传图片存放路径
 public_folder: "/images/uploads"
 
 collections:
   - name: "pages"
     label: "Pages"
-    folder: "content/pages"
+    folder: "content/pages"                  # 页面内容存放路径
     create: true
     slug: "{{slug}}"
     fields:
@@ -18,7 +18,7 @@ collections:
 
   - name: "posts"
     label: "Blog Posts"
-    folder: "content/posts"
+    folder: "content/posts"                  # 博客文章存放路径
     create: true
     slug: "{{slug}}"
     fields:
