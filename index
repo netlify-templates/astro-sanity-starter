@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VALENTYNA – Portfolio</title>
+  <style>
+    :root {
+      --bg: #fdfcfb;
+      --text: #2e2a27;
+      --accent: #7b5e57; /* кавовий */
+      --light: #d4bfae;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      margin: 0; padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, var(--light), var(--accent));
+      color: white;
+    }
+    header h1 {
+      font-size: 3em; margin: 0;
+      letter-spacing: 2px;
+    }
+    header p {
+      margin: 10px 0 0;
+      font-size: 1.2em;
+    }
+    nav {
+      margin-top: 20px;
+    }
+    nav a {
+      color: white; text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      transition: opacity .3s;
+    }
+    nav a:hover { opacity: 0.7; }
+
+    section {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+    h2 {
+      text-align: center;
+      font-size: 2em;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    ul { list-style: none; padding: 0; }
+    ul li {
+      background: #fff;
+      padding: 15px 20px;
+      margin: 10px 0;
+      border-left: 5px solid var(--accent);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      margin-top: 15px;
+      transition: background .3s;
+    }
+    .btn:hover { background: #5a3f38; }
+
+    footer {
+      text-align: center;
+      padding: 30px 10px;
+      background: #eee;
+      color: #666;
+      font-size: 0.9em;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>VALENTYNA</h1>
+    <p>Artist · Illustrator · Copywriter</p>
+    <nav>
+      <a href="#works">Works</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="works">
+    <h2>My Works</h2>
+    <ul>
+      <li>🎨 Illustration: “Silent Flame”</li>
+      <li>📖 Book Cover: “Shadow Behind Me”</li>
+      <li>✨ Logo Design: “VALENTYNA”</li>
+    </ul>
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I am a straightforward and determined creator.  
+      I love illustrating, writing texts, and bringing new visual stories to life.  
+      My works combine atmosphere, emotion, and elegance.
+    </p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
+    <a class="btn" href="mailto:you@example.com">Write me</a>
+  </section>
+
+  <footer>
+    <p>© 2025 VALENTYNA</p>
+  </footer>
+</body>
+</html>
