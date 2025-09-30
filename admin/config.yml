@@ -1,0 +1,27 @@
+backend:
+  name: github
+  repo: angelakcc-cmyk/astro-sanity-starter 
+  branch: main                                
+
+media_folder: "static/images/uploads"        
+public_folder: "/images/uploads"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    folder: "content/pages"                  
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "posts"
+    label: "Blog Posts"
+    folder: "content/posts"  
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
