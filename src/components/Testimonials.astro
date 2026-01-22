@@ -4,9 +4,7 @@ import { type TestimonialsSection } from 'types';
 import Testimonial from '@components/Testimonial.astro';
 import Section from '@components/Section.astro';
 
-interface Props extends TestimonialsSection {
-    'data-sb-field-path'?: string;
-}
+interface Props extends TestimonialsSection {}
 
 const { heading, body, items, columns, ...rest } = Astro.props;
 ---
@@ -14,20 +12,19 @@ const { heading, body, items, columns, ...rest } = Astro.props;
 <Section {...rest} class="text-center">
     {
         heading && (
-            <h2 class="text-2xl font-black sm:text-4xl text-balance" data-sb-field-path=".heading">
+            <h2 class="text-2xl font-black sm:text-4xl text-balance">
                 {heading}
             </h2>
         )
     }
-    {body && <div class:list={['mx-auto', heading && 'mt-4', 'max-w-prose markdown']} data-sb-field-path=".body" set:html={marked.parse(body)} />}
+    {body && <div class:list={['mx-auto', heading && 'mt-4', 'max-w-prose markdown']} set:html={marked.parse(body)} />}
     {
         items && items?.length > 0 && (
             <div
                 class:list={[(heading || body) && 'mt-8', 'grid gap-8 justify-items-center', columns !== 'one' && 'md:grid-cols-2']}
-                data-sb-field-path=".items"
             >
-                {items?.map((testimonial, idx) => (
-                    <Testimonial {...testimonial} data-sb-field-path={`.${idx}`} />
+                {items?.map((testimonial) => (
+                    <Testimonial {...testimonial} />
                 ))}
             </div>
         )

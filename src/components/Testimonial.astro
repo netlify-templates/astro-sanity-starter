@@ -5,21 +5,19 @@ import ResponsiveImage from '@components/ResponsiveImage.astro';
 
 interface Props extends Testimonial {
     class?: string;
-    'data-sb-field-path'?: string;
 }
 
-const { quote, author, theme, hasBorder, class: className, 'data-sb-field-path': fieldPath } = Astro.props;
+const { quote, author, theme, hasBorder, class: className } = Astro.props;
 ---
 
 <div
     class:list={['card', hasBorder !== false && 'card-border', 'w-full max-w-2xl', className]}
     {...theme && theme !== 'transparent' && { 'data-theme': theme }}
-    data-sb-field-path={fieldPath}
 >
     <div class="text-left card-body">
         {
             author?.company && (
-                <div class="mb-4 font-bold" data-sb-field-path=".author.company">
+                <div class="mb-4 font-bold">
                     {author.company?.logo?.src ? (
                         <ResponsiveImage
                             _id={author.company.logo._id}
@@ -30,18 +28,18 @@ const { quote, author, theme, hasBorder, class: className, 'data-sb-field-path':
                             class="max-w-24"
                         />
                     ) : (
-                        <span data-sb-field-path=".name">{author.company.name}</span>
+                        <span>{author.company.name}</span>
                     )}
                 </div>
             )
         }
-        {quote && <blockquote class="text-lg sm:text-xl" data-sb-field-path=".quote" set:html={marked.parse(quote)} />}
+        {quote && <blockquote class="text-lg sm:text-xl" set:html={marked.parse(quote)} />}
         {
             author && (
-                <div class="flex flex-col gap-4 mt-4" data-sb-field-path=".author">
+                <div class="flex flex-col gap-4 mt-4">
                     <div class="font-bold">
                         <!-- prettier-ignore -->
-                        <span data-sb-field-path=".name">{author.name}</span>{author.title && (<>{', '}<span data-sb-field-path=".title">{author.title}</span></>)}
+                        <span>{author.name}</span>{author.title && (<>{', '}<span>{author.title}</span></>)}
                     </div>
 
                     {author.image?.src && (

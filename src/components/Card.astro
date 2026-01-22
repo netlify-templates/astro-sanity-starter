@@ -7,16 +7,14 @@ import ResponsiveImage from '@components/ResponsiveImage.astro';
 
 interface Props extends Card {
     class?: string;
-    'data-sb-field-path'?: string;
 }
 
-const { badge, heading, body, cta, image, theme, textAlign, hasBorder, class: className, 'data-sb-field-path': fieldPath } = Astro.props;
+const { badge, heading, body, cta, image, theme, textAlign, hasBorder, class: className } = Astro.props;
 ---
 
 <div
     class:list={['card', hasBorder !== false && 'card-border', 'w-full max-w-2xl', className]}
     {...theme && theme !== 'transparent' && { 'data-theme': theme }}
-    data-sb-field-path={fieldPath}
 >
     {
         image && image.src && (
@@ -26,23 +24,22 @@ const { badge, heading, body, cta, image, theme, textAlign, hasBorder, class: cl
         )
     }
     <div class:list={['card-body gap-4', textAlign === 'center' ? 'items-center text-center' : 'text-left']}>
-        {badge && badge.label && <Badge {...badge} data-sb-field-path=".badge" />}
+        {badge && badge.label && <Badge {...badge} />}
         {
             heading && (
-                <h3 class="font-black card-title sm:text-2xl" data-sb-field-path=".heading">
+                <h3 class="font-black card-title sm:text-2xl">
                     {heading}
                 </h3>
             )
         }
-        {body && <div class="markdown" set:html={marked.parse(body)} data-sb-field-path=".body" />}
+        {body && <div class="markdown" set:html={marked.parse(body)} />}
         {
             cta && cta.length > 0 && (
-                <div class="card-actions items-center" data-sb-field-path=".cta">
-                    {cta.map((item, index) => (
+                <div class="card-actions items-center">
+                    {cta.map((item) => (
                         <Action
                             action={item}
                             class:list={[item._type === 'actionLink' ? 'font-bold underline hover:no-underline' : 'px-4 py-2.5 h-auto min-h-0']}
-                            data-sb-field-path={`.${index}`}
                         />
                     ))}
                 </div>

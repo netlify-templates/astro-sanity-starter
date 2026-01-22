@@ -1,11 +1,9 @@
 ---
 import { type BackgroundImage } from 'types';
 
-interface Props extends BackgroundImage {
-    'data-sb-field-path'?: string;
-}
+interface Props extends BackgroundImage {}
 
-const { image, opacity, 'data-sb-field-path': fieldPath } = Astro.props;
+const { image, opacity } = Astro.props;
 ---
 
 {
@@ -16,7 +14,6 @@ const { image, opacity, 'data-sb-field-path': fieldPath } = Astro.props;
                 backgroundImage: `url('${image.src}')`,
                 opacity: (opacity ?? 100) * 0.01
             }}
-            data-sb-field-path={fieldPath}
         />
     )
 }

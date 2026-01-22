@@ -4,9 +4,7 @@ import { type CtaSection } from 'types';
 import Action from '@components/Action.astro';
 import Section from '@components/Section.astro';
 
-interface Props extends CtaSection {
-    'data-sb-field-path'?: string;
-}
+interface Props extends CtaSection {}
 
 const { heading, body, cta, ...rest } = Astro.props;
 ---
@@ -14,17 +12,17 @@ const { heading, body, cta, ...rest } = Astro.props;
 <Section {...rest} class="text-center">
     {
         heading && (
-            <h2 class="text-2xl font-black sm:text-4xl text-balance" data-sb-field-path=".heading">
+            <h2 class="text-2xl font-black sm:text-4xl text-balance">
                 {heading}
             </h2>
         )
     }
-    {body && <div class:list={['mx-auto', heading && 'mt-4', 'max-w-prose markdown']} data-sb-field-path=".body" set:html={marked.parse(body)} />}
+    {body && <div class:list={['mx-auto', heading && 'mt-4', 'max-w-prose markdown']} set:html={marked.parse(body)} />}
     {
         cta && cta.length > 0 && (
-            <div class:list={[(heading || body) && 'mt-8', 'flex flex-wrap items-center justify-center gap-4']} data-sb-field-path=".cta">
-                {cta.map((item, index) => (
-                    <Action action={item} class:list={[item._type === 'text' && 'font-bold underline hover:no-underline']} data-sb-field-path={`.${index}`} />
+            <div class:list={[(heading || body) && 'mt-8', 'flex flex-wrap items-center justify-center gap-4']}>
+                {cta.map((item) => (
+                    <Action action={item} class:list={[item._type === 'text' && 'font-bold underline hover:no-underline']} />
                 ))}
             </div>
         )

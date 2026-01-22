@@ -3,10 +3,9 @@ import { type Badge } from 'types';
 
 interface Props extends Badge {
     class?: string;
-    'data-sb-field-path'?: string;
 }
 
-const { label, theme, class: className, 'data-sb-field-path': fieldPath } = Astro.props;
+const { label, theme, class: className } = Astro.props;
 
 const themeClassMap = {
     primary: 'badge-primary',
@@ -16,6 +15,6 @@ const themeClassMap = {
 };
 ---
 
-<div class:list={['badge h-auto px-3 py-1 text-xs uppercase tracking-wider', themeClassMap[theme || 'primary'], className]} data-sb-field-path={fieldPath}>
-    <span data-sb-field-path=".label">{label}</span>
+<div class:list={['badge h-auto px-3 py-1 text-xs uppercase tracking-wider', themeClassMap[theme || 'primary'], className]}>
+    <span>{label}</span>
 </div>

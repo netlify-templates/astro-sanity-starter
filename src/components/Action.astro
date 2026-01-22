@@ -6,10 +6,9 @@ import ActionLink from '@components/ActionLink.astro';
 interface Props {
     action: ActionButtonProps | ActionLinkProps;
     class?: string;
-    'data-sb-field-path'?: string;
 }
 
-const { action, class: className, 'data-sb-field-path': fieldPath } = Astro.props;
+const { action, class: className } = Astro.props;
 
 const componentMap = {
     actionButton: ActionButton,
@@ -18,4 +17,4 @@ const componentMap = {
 const Component = componentMap[action._type];
 ---
 
-<Component {...action} class={className} data-sb-field-path={fieldPath} />
+<Component {...action} class={className} />

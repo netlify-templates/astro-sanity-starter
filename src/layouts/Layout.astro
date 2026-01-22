@@ -72,13 +72,8 @@ function formatCanonicalURL(url: string | URL) {
         {resolvedImage?.src && <meta property="twitter:image" content={resolvedImage.src} />}
     </head>
     <body class="antialiased">
-        <Header {...configData.header} data-sb-field-path={`${configData._id}:header`} />
+        <Header {...configData.header} />
         <slot />
-        <Footer {...configData.footer} data-sb-field-path={`${configData._id}:footer`} />
-        <script is:inline>
-            window.addEventListener('stackbitObjectsChanged', () => {
-                window.location.reload();
-            });
-        </script>
+        <Footer {...configData.footer} />
     </body>
 </html>

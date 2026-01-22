@@ -8,18 +8,11 @@ interface Props {
     height: number;
     alt?: string;
     class?: string;
-    'data-sb-field-path'?: string;
 }
 
-const { _id, src, width, height, alt, class: className, 'data-sb-field-path': fieldPath } = Astro.props;
+const { src, width, height, alt, class: className } = Astro.props;
 
 const format = src?.includes('.svg') ? 'svg' : 'webp';
-const annotations: { [key: string]: string } = {};
-if (_id) {
-    annotations['data-sb-object-id'] = _id;
-} else if (fieldPath) {
-    annotations['data-sb-field-path'] = fieldPath;
-}
 ---
 
-<Image src={src} width={width} height={height} alt={alt || ''} format={format} class:list={className} {...annotations} />
+<Image src={src} width={width} height={height} alt={alt || ''} format={format} class:list={className} />
