@@ -2,17 +2,15 @@
 import { marked } from 'marked';
 import { type Footer } from 'types';
 
-interface Props extends Footer {
-    'data-sb-field-path'?: string;
-}
+interface Props extends Footer {}
 
-const { text, 'data-sb-field-path': fieldPath } = Astro.props;
+const { text } = Astro.props;
 ---
 
 {
     text && (
-        <footer class="px-4 py-16 sm:px-5 sm:py-24" data-sb-field-path={fieldPath}>
-            <div class="mx-auto text-center max-w-7xl" data-sb-field-path=".text" set:html={marked.parse(text)} />
+        <footer class="px-4 py-16 sm:px-5 sm:py-24">
+            <div class="mx-auto text-center max-w-7xl" set:html={marked.parse(text)} />
         </footer>
     )
 }

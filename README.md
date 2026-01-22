@@ -1,10 +1,8 @@
-# Astro Netlify Sanity Starter
-
-![Astro Netlify Sanity Starter](https://assets.stackbit.com/docs/astro-sanity-starter-thumb.jpg)
+# Astro Sanity Starter
 
 [Live Demo](https://astro-sanity-starter-demo.netlify.app/)
 
-Netlify Astro and Sanity minimal starter with [visual editing](https://docs.netlify.com/visual-editor/overview/).
+A minimal Astro and Sanity CMS starter template for building modern, content-driven websites.
 
 | Prerequisites                                                                |
 | :--------------------------------------------------------------------------- |
@@ -90,26 +88,7 @@ Then you can run the Astro.js development server in root directory:
 npm run dev
 ```
 
-Install Netlify Visual Editor CLI:
-
-```txt
-npm install -g @stackbit/cli
-```
-
-And the Stackbit development server.
-
-```txt
-stackbit dev
-```
-
-This outputs your own Netlify Visual Editor URL. Open this, register or sign in, and you will be directed to Netlify Visual Editor for your new project.
-
-## Next Steps
-
-Here are a few suggestions on what to do next if you're new to Netlify Visual Editor:
-
-- Learn [how Netlify Visual Editor works](https://docs.netlify.com/visual-editor/concepts/how-visual-editor-works/)
-- Check [Netlify Visual Editor reference documentation](https://visual-editor-reference.netlify.com/)
+Open your browser and navigate to `http://localhost:3000` to see your site.
 
 ## Support
 

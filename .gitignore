@@ -20,8 +20,5 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-# stackbit
-.cache
-.stackbit/cache
 # Local Netlify folder
 .netlify

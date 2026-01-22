@@ -6,10 +6,9 @@ interface Props {
     items: LogosSection['items'];
     motion?: LogosSection['motion'];
     class?: string;
-    'data-sb-field-path'?: string;
 }
 
-const { items, motion, class: className, 'data-sb-field-path': fieldPath } = Astro.props;
+const { items, motion, class: className } = Astro.props;
 ---
 
 <div
@@ -25,7 +24,7 @@ const { items, motion, class: className, 'data-sb-field-path': fieldPath } = Ast
         }}
     >
         <div class:list={['logo-strip', 'flex', ' items-center', 'w-max', motion === 'moveToLeft' ? 'logo-strip-slide-left' : 'logo-strip-slide-right']}>
-            <div class="flex justify-around logo-strip-items" data-sb-field-path={fieldPath}>
+            <div class="flex justify-around logo-strip-items">
                 {
                     items.map((logo) => {
                         return logo.src ? (
@@ -36,7 +35,7 @@ const { items, motion, class: className, 'data-sb-field-path': fieldPath } = Ast
                     })
                 }
             </div>
-            <div class="flex justify-around logo-strip-items" data-sb-field-path={fieldPath}>
+            <div class="flex justify-around logo-strip-items">
                 {
                     items.map((logo) => {
                         return logo.src ? (

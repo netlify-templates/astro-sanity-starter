@@ -4,25 +4,24 @@ import BackgroundImage from '@components/BackgroundImage.astro';
 
 interface Props extends Section {
     class?: string;
-    'data-sb-field-path'?: string;
 }
 
-const { backgroundImage, theme, width, class: className, 'data-sb-field-path': fieldPath } = Astro.props;
+const { backgroundImage, theme, width, class: className } = Astro.props;
 ---
 
 {
     width === 'inset' ? (
-        <section class="w-full px-3 sm:px-6" data-width="inset" data-sb-field-path={fieldPath}>
+        <section class="w-full px-3 sm:px-6" data-width="inset">
             <div class:list={['relative py-16 mx-auto overflow-hidden max-w-7xl rounded-box sm:py-24', className]} data-theme={theme || 'light'}>
-                {backgroundImage && <BackgroundImage {...backgroundImage} data-sb-field-path=".backgroundImage" />}
+                {backgroundImage && <BackgroundImage {...backgroundImage} />}
                 <div class="relative w-10/12 mx-auto">
                     <slot />
                 </div>
             </div>
         </section>
     ) : (
-        <section class:list={['relative w-full px-3 py-16 sm:px-6 sm:py-24', className]} data-theme={theme || 'light'} data-sb-field-path={fieldPath}>
-            {backgroundImage && <BackgroundImage {...backgroundImage} data-sb-field-path=".backgroundImage" />}
+        <section class:list={['relative w-full px-3 py-16 sm:px-6 sm:py-24', className]} data-theme={theme || 'light'}>
+            {backgroundImage && <BackgroundImage {...backgroundImage} />}
             <div class="relative mx-auto max-w-7xl">
                 <slot />
             </div>

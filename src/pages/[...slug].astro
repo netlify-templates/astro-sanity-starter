@@ -23,7 +23,7 @@ const { id } = Astro.props;
 const pages = await getPageById(id);
 const page: Page = pages.length ? pages[0] : null;
 
-const { _id, title, sections, metaTitle, metaDescription, socialImage } = page || {};
+const { title, sections, metaTitle, metaDescription, socialImage } = page || {};
 
 const componentMap = {
     cardsSection: Cards,
@@ -37,11 +37,11 @@ const componentMap = {
 {
     page && (
         <Layout title={metaTitle ?? title} description={metaDescription} image={socialImage}>
-            <div data-sb-object-id={_id}>
+            <div>
                 {sections?.length &&
-                    sections.map((section, idx) => {
+                    sections.map((section) => {
                         const Component = componentMap[section._type];
-                        return <Component {...section} data-sb-field-path={`sections.${idx}`} />;
+                        return <Component {...section} />;
                     })}
             </div>
         </Layout>
