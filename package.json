@@ -18,7 +18,7 @@
         "@tailwindcss/vite": "^4.0.9",
         "astro": "^5.1.1",
         "astro-icon": "^1.1.0",
-        "dotenv": "^16.4.7",
+        "dotenv": "^17.0.0",
         "fs-extra": "^11.2.0",
         "marked": "^15.0.4",
         "tailwindcss": "^4.0.9"
