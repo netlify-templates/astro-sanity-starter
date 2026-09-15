@@ -24,7 +24,7 @@
         "tailwindcss": "^4.0.9"
     },
     "devDependencies": {
-        "@sanity/export": "^3.38.1",
+        "@sanity/export": "^6.0.0",
         "@sanity/import": "^3.37.4",
         "configstore": "7.0.0",
         "daisyui": "^5.0.0"
