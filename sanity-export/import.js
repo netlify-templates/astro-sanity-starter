@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const { createClient } = require('@sanity/client');
 const sanityImport = require('@sanity/import');
-const Configstore = require('configstore');
+const { default: Configstore } = require('configstore');
 
 const config = new Configstore('sanity', {}, { globalConfigPath: true });
 const token = config.get('authToken');
