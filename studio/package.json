@@ -20,7 +20,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sanity": "^3.23.4",
-    "sanity-plugin-markdown": "^4.1.2",
+    "sanity-plugin-markdown": "^9.0.0",
     "styled-components": "^6.1.8"
   },
   "devDependencies": {
