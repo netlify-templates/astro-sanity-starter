@@ -20,7 +20,7 @@
         "astro-icon": "^1.1.0",
         "dotenv": "^16.4.7",
         "fs-extra": "^11.2.0",
-        "marked": "^15.0.4",
+        "marked": "^18.0.0",
         "tailwindcss": "^4.0.9"
     },
     "devDependencies": {
